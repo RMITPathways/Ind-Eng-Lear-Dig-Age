@@ -1,0 +1,22 @@
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Common editor and temporary files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
+
+# Python tooling, if used for local testing
+__pycache__/
+.pytest_cache/
+
+# Learner-generated progress and answer downloads — never commit to a public repo
+my-self-study-progress*.json
+my-self-study-plan*.txt
+my-self-study-plan*.pdf
