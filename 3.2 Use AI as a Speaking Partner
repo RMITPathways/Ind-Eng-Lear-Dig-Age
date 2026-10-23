@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI speaking practice | Independent Learning in the Digital Age</title>
+<style>
+:root{--red:#e61e2a;--blue:#000054;--blue30:#b3b3cc;--ink:#202039;--muted:#4b5063;--bg:#f4f5f9;--line:#cbd0db;--focus:#0759ba}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--bg);font:16px/1.6 Arial,Helvetica,sans-serif}
+main{max-width:770px;margin:auto;padding:18px 14px 60px}header{background:var(--blue);color:#fff;border-top:7px solid var(--red);padding:23px;border-radius:6px}header h1{font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.25;margin:.2em 0}header p{margin:0}
+section{background:#fff;border:1px solid var(--line);padding:22px 20px;margin:15px 0;border-radius:7px}
+h2{font-size:1.24rem;color:var(--blue);margin:0 0 8px}h3{font-size:1.05rem;margin:20px 0 6px;color:var(--blue)}
+p{margin:9px 0}label,legend{font-weight:bold;display:block;margin:10px 0 6px}input[type=text],select,textarea{font:inherit;width:100%;padding:11px 12px;border:2px solid #81889a;border-radius:5px;background:#fff;color:var(--ink)}textarea{min-height:96px;resize:vertical}
+fieldset{border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin:14px 0}
+button{font:inherit;font-weight:bold;border:2px solid var(--blue);border-radius:5px;padding:10px 15px;min-height:44px;cursor:pointer;background:var(--blue);color:#fff}
+button.secondary{background:#fff;color:var(--blue)}button.red{background:var(--red);border-color:var(--red)}button:disabled{opacity:.5;cursor:not-allowed}button:hover:not(:disabled){filter:brightness(1.2)}:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0;align-items:center}.hint{font-size:.94rem;color:var(--muted)}.callout{background:#f0f2fa;border-left:5px solid var(--blue);padding:12px 16px;margin:12px 0}.warn{border-left-color:var(--red)}
+.question{font-size:1.14rem;font-weight:bold;background:#f2f3f9;border-radius:5px;padding:15px;margin:12px 0}.status{font-size:.92rem;color:var(--muted)}.field{margin:16px 0}.top{display:flex;justify-content:flex-end;margin:6px 0 13px}.top button{min-height:42px}.hidden{display:none!important}
+.check{display:flex;gap:10px;align-items:flex-start;margin:10px 0}.check input{width:21px;height:21px;flex:none;margin-top:3px}.check label,.check span{margin:0;font-weight:normal}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:#f3f4f8;padding:13px;border-radius:5px;border:1px solid var(--line)}
+.stepno{display:inline-block;color:#fff;background:var(--blue);padding:1px 8px;border-radius:3px;margin-right:6px}
+.speak{border:2px solid var(--blue30);border-radius:7px;padding:14px 16px;margin:14px 0}.timer{font-size:2.2rem;font-weight:bold;color:var(--blue);line-height:1.2;font-variant-numeric:tabular-nums}
+audio{width:100%;margin-top:8px}
+.option{display:block;width:100%;text-align:left;background:#fff;color:var(--ink);border:2px solid var(--blue30);font-weight:normal;margin:8px 0}
+.option[aria-pressed=true]{border-color:var(--blue);background:#f0f2fa}
+.fb{padding:10px 14px;border-radius:5px;margin:8px 0;border-left:5px solid var(--blue);background:#f0f2fa}.fb.no{border-left-color:var(--red);background:#fdf0f1}
+.privacy{border-left:5px solid var(--red);background:#fdf0f1;padding:10px 14px;border-radius:5px;margin:8px 0}
+.copyStatus{font-size:.92rem;color:var(--muted)}
+.compare{display:grid;gap:12px}@media(min-width:600px){.compare{grid-template-columns:1fr 1fr}}
+footer{font-size:.86rem;color:var(--muted);margin-top:20px}
+@media print{body{background:#fff}main{max-width:100%;padding:0}button,.top,.no-print,audio,.speak{display:none!important}section{break-inside:avoid;border:1px solid #999}}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><button class="secondary" id="langBtn" type="button">Tiếng Việt</button></div>
+<header><h1 data-en="Practise speaking with AI" data-vi="Luyện nói với AI">Practise speaking with AI</h1>
+<p data-en="Prepare, practise, get feedback, and try again." data-vi="Chuẩn bị, luyện tập, nhận phản hồi và thử lại.">Prepare, practise, get feedback, and try again.</p></header>
+
+<section>
+<h2 data-en="Before you start: stay safe" data-vi="Trước khi bắt đầu: giữ an toàn">Before you start: stay safe</h2>
+<ul>
+<li data-en="Keep your information private. Do not share your full name, address, phone number, or other private information." data-vi="Giữ kín thông tin cá nhân. Không chia sẻ họ tên đầy đủ, địa chỉ, số điện thoại hoặc thông tin riêng tư.">Keep your information private. Do not share your full name, address, phone number, or other private information.</li>
+<li data-en="AI can be wrong. Check its feedback. Ask a teacher or check another source if you are not sure." data-vi="AI có thể sai. Hãy kiểm tra phản hồi. Hỏi giáo viên hoặc kiểm tra nguồn khác nếu bạn không chắc.">AI can be wrong. Check its feedback. Ask a teacher or check another source if you are not sure.</li>
+<li data-en="Do your own thinking. Ask AI for help to start, not for a full answer to read aloud." data-vi="Hãy tự suy nghĩ. Nhờ AI giúp bạn bắt đầu, không yêu cầu bài nói hoàn chỉnh để đọc theo.">Do your own thinking. Ask AI for help to start, not for a full answer to read aloud.</li>
+</ul>
+<div class="callout warn"><strong data-en="How this activity works" data-vi="Cách hoạt động">How this activity works</strong>
+<p data-en="This page is not a live AI chatbot. You can practise and record yourself here. Your recordings and answers stay on your device. For AI feedback, copy a prompt into an AI tool. Only share answers you are comfortable sharing." data-vi="Trang này không phải chatbot AI trực tiếp. Bạn có thể luyện tập và ghi âm tại đây. Bản ghi âm và câu trả lời chỉ lưu trên thiết bị của bạn. Để nhận phản hồi AI, hãy sao chép câu lệnh vào một công cụ AI. Chỉ chia sẻ câu trả lời mà bạn thấy an toàn.">This page is not a live AI chatbot. You can practise and record yourself here. Your recordings and answers stay on your device. For AI feedback, copy a prompt into an AI tool. Only share answers you are comfortable sharing.</p></div>
+</section>
+
+<section>
+<h2><span class="stepno">0</span><span data-en="Warm-up: use AI wisely" data-vi="Khởi động: dùng AI thông minh">Warm-up: use AI wisely</span></h2>
+<p data-en="Answer three quick questions." data-vi="Trả lời ba câu hỏi nhanh.">Answer three quick questions.</p>
+
+<fieldset class="quiz"
+ data-why-en="It shares a full name, a workplace, and a street. Keep it general, for example: 'I work in a bank.'"
+ data-why-vi="Câu này chia sẻ họ tên đầy đủ, nơi làm việc và tên đường. Hãy nói chung chung, ví dụ: 'Tôi làm việc ở ngân hàng.'">
+<legend data-en="1. Is this safe to send to AI?" data-vi="1. Gửi câu này cho AI có an toàn không?">1. Is this safe to send to AI?</legend>
+<pre>My name is Lan Nguyen. I work at ABC Bank on Le Loi Street. Ask me about my job.</pre>
+<button type="button" class="option" data-ok="0" data-en="Safe" data-vi="An toàn">Safe</button>
+<button type="button" class="option" data-ok="1" data-en="Not safe" data-vi="Không an toàn">Not safe</button>
+<p class="fb hidden" role="status"></p>
+</fieldset>
+
+<fieldset class="quiz"
+ data-why-en="It gives enough information to practise, but nothing private."
+ data-why-vi="Câu này đủ thông tin để luyện tập nhưng không có thông tin riêng tư.">
+<legend data-en="2. Is this safe to send to AI?" data-vi="2. Gửi câu này cho AI có an toàn không?">2. Is this safe to send to AI?</legend>
+<pre>I work in an office. Ask me questions about my job.</pre>
+<button type="button" class="option" data-ok="1" data-en="Safe" data-vi="An toàn">Safe</button>
+<button type="button" class="option" data-ok="0" data-en="Not safe" data-vi="Không an toàn">Not safe</button>
+<p class="fb hidden" role="status"></p>
+</fieldset>
+
+<fieldset class="quiz"
+ data-why-en="Prompt B gives you a little help to start. You still do the speaking yourself."
+ data-why-vi="Câu lệnh B giúp bạn một chút để bắt đầu. Bạn vẫn tự nói.">
+<legend data-en="3. Which prompt is better for learning?" data-vi="3. Câu lệnh nào tốt hơn cho việc học?">3. Which prompt is better for learning?</legend>
+<button type="button" class="option" data-ok="0">A: Write a 1-minute answer about my hobby for me.</button>
+<button type="button" class="option" data-ok="1">B: Give me 3 key words and 1 sentence starter about my hobby. Do not write the full answer.</button>
+<p class="fb hidden" role="status"></p>
+</fieldset>
+</section>
+
+<section>
+<h2><span class="stepno">1</span><span data-en="Choose a topic" data-vi="Chọn chủ đề">Choose a topic</span></h2>
+<label for="topic" data-en="What would you like to talk about?" data-vi="Bạn muốn nói về chủ đề gì?">What would you like to talk about?</label>
+<select id="topic"><option value="daily life" data-en="Daily life" data-vi="Cuộc sống hằng ngày">Daily life</option><option value="food" data-en="Food" data-vi="Đồ ăn">Food</option><option value="studying English" data-en="Studying English" data-vi="Học tiếng Anh">Studying English</option><option value="hobbies" data-en="Hobbies" data-vi="Sở thích">Hobbies</option><option value="work or study" data-en="Work or study" data-vi="Công việc hoặc học tập">Work or study</option><option value="other" data-en="Another topic" data-vi="Chủ đề khác">Another topic</option></select>
+<div class="field hidden" id="otherWrap"><label for="otherTopic" data-en="Write your topic" data-vi="Viết chủ đề của bạn">Write your topic</label><input id="otherTopic" type="text" maxlength="80" data-en-ph="e.g. travel" data-vi-ph="ví dụ: du lịch" placeholder="e.g. travel"></div>
+</section>
+
+<section>
+<h2><span class="stepno">2</span><span data-en="Get ideas before you speak" data-vi="Lấy ý tưởng trước khi nói">Get ideas before you speak</span></h2>
+<p data-en="Ask for three key words and one sentence starter. Do not ask AI to write your full answer." data-vi="Yêu cầu ba từ khóa và một câu mở đầu. Đừng yêu cầu AI viết toàn bộ câu trả lời.">Ask for three key words and one sentence starter. Do not ask AI to write your full answer.</p>
+<pre id="ideaPrompt"></pre>
+<div class="actions"><button type="button" class="copy" data-target="ideaPrompt" data-en="Copy prompt" data-vi="Sao chép câu lệnh">Copy prompt</button><span class="copyStatus" role="status"></span></div>
+<label for="myIdeas" data-en="My three key words and sentence starter (optional)" data-vi="Ba từ khóa và câu mở đầu của tôi (không bắt buộc)">My three key words and sentence starter (optional)</label>
+<textarea id="myIdeas" data-en-ph="e.g. food, family, weekend. I like…" data-vi-ph="ví dụ: food, family, weekend. I like…" placeholder="e.g. food, family, weekend. I like…"></textarea>
+</section>
+
+<section>
+<h2><span class="stepno">3</span><span data-en="Practise three questions" data-vi="Luyện tập ba câu hỏi">Practise three questions</span></h2>
+<p data-en="Answer each question out loud. Speak for 30–60 seconds. You can record yourself and listen back." data-vi="Trả lời từng câu hỏi thành tiếng. Nói trong 30–60 giây. Bạn có thể ghi âm và nghe lại.">Answer each question out loud. Speak for 30–60 seconds. You can record yourself and listen back.</p>
+<p class="status" id="count" role="status" aria-live="polite">Question 1 of 3</p>
+<div class="question" id="question" tabindex="-1"></div>
+
+<div class="speak" id="speakPractice">
+<div class="check"><input type="checkbox" id="recPractice" class="recOn"><label for="recPractice" data-en="Record my voice. The recording stays on this device." data-vi="Ghi âm giọng nói của tôi. Bản ghi chỉ lưu trên thiết bị này.">Record my voice. The recording stays on this device.</label></div>
+<div class="timer" aria-hidden="true">1:00</div>
+<div class="actions"><button type="button" class="red start" data-en="Start speaking" data-vi="Bắt đầu nói">Start speaking</button><button type="button" class="secondary stop" disabled data-en="Stop" data-vi="Dừng">Stop</button></div>
+<p class="status speakStatus" role="status" aria-live="polite"></p>
+<audio controls class="hidden"></audio>
+</div>
+
+<label for="answerNotes" data-en="My notes (optional)" data-vi="Ghi chú của tôi (không bắt buộc)">My notes (optional)</label>
+<textarea id="answerNotes" data-en-ph="Write a few words to remember what you said." data-vi-ph="Viết vài từ để nhớ bạn đã nói gì." placeholder="Write a few words to remember what you said."></textarea>
+<div class="actions"><button type="button" id="previous" class="secondary" data-en="Previous question" data-vi="Câu trước">Previous question</button><button type="button" id="next" data-en="Next question" data-vi="Câu tiếp theo">Next question</button></div>
+<p class="status" id="questionStatus" aria-live="polite"></p>
+
+<div class="callout"><span data-en="Want a real AI conversation? Copy this prompt into an AI tool:" data-vi="Bạn muốn trò chuyện với AI thật? Sao chép câu lệnh này vào một công cụ AI:">Want a real AI conversation? Copy this prompt into an AI tool:</span><pre id="talkPrompt"></pre>
+<div class="actions"><button type="button" class="copy" data-target="talkPrompt" data-en="Copy conversation prompt" data-vi="Sao chép câu lệnh hội thoại">Copy conversation prompt</button><span class="copyStatus" role="status"></span></div></div>
+</section>
+
+<section>
+<h2><span class="stepno">4</span><span data-en="Ask for feedback" data-vi="Xin phản hồi">Ask for feedback</span></h2>
+<p data-en="Choose one thing to improve. The prompt asks AI for one short suggestion and one example." data-vi="Chọn một điều để cải thiện. Câu lệnh yêu cầu AI đưa ra một gợi ý ngắn và một ví dụ.">Choose one thing to improve. The prompt asks AI for one short suggestion and one example.</p>
+<label for="feedbackType" data-en="What do you want to improve?" data-vi="Bạn muốn cải thiện điều gì?">What do you want to improve?</label>
+<select id="feedbackType"><option value="grammar" data-en="Grammar" data-vi="Ngữ pháp">Grammar</option><option value="vocabulary" data-en="Vocabulary" data-vi="Từ vựng">Vocabulary</option><option value="organisation" data-en="Organisation" data-vi="Sắp xếp ý">Organisation</option></select>
+<label for="feedbackAnswer" data-en="Write one of your answers" data-vi="Viết một câu trả lời của bạn">Write one of your answers</label>
+<textarea id="feedbackAnswer" data-en-ph="Write what you said. Do not include private information." data-vi-ph="Viết lại những gì bạn đã nói. Không ghi thông tin riêng tư." placeholder="Write what you said. Do not include private information."></textarea>
+<div class="privacy hidden" id="privacyWarn" role="alert" data-en="This looks like private information (a phone number or email). Remove it before you copy." data-vi="Có vẻ đây là thông tin riêng tư (số điện thoại hoặc email). Hãy xoá trước khi sao chép.">This looks like private information (a phone number or email). Remove it before you copy.</div>
+<pre id="feedbackPrompt"></pre>
+<div class="actions"><button type="button" class="copy" data-target="feedbackPrompt" data-en="Copy feedback prompt" data-vi="Sao chép câu lệnh phản hồi">Copy feedback prompt</button><span class="copyStatus" role="status"></span></div>
+
+<h3 data-en="Check the feedback" data-vi="Kiểm tra phản hồi">Check the feedback</h3>
+<label for="feedbackReceived" data-en="Paste or write the AI feedback here" data-vi="Dán hoặc viết phản hồi của AI vào đây">Paste or write the AI feedback here</label>
+<textarea id="feedbackReceived"></textarea>
+<p data-en="Tick each one that is true:" data-vi="Đánh dấu những điều đúng:">Tick each one that is true:</p>
+<div class="check"><input type="checkbox" id="c1" class="fbCheck"><label for="c1" data-en="It is about the one thing I asked for." data-vi="Phản hồi nói về đúng điều tôi hỏi.">It is about the one thing I asked for.</label></div>
+<div class="check"><input type="checkbox" id="c2" class="fbCheck"><label for="c2" data-en="It gives an example." data-vi="Phản hồi có ví dụ.">It gives an example.</label></div>
+<div class="check"><input type="checkbox" id="c3" class="fbCheck"><label for="c3" data-en="I understand it." data-vi="Tôi hiểu phản hồi.">I understand it.</label></div>
+<div class="check"><input type="checkbox" id="c4" class="fbCheck"><label for="c4" data-en="I agree with it." data-vi="Tôi đồng ý với phản hồi.">I agree with it.</label></div>
+<div class="fb" id="checkResult" role="status" aria-live="polite"></div>
+<div id="followUp" class="hidden"><pre id="followPrompt">Please explain your feedback again in simpler English. Give me one short example.</pre>
+<div class="actions"><button type="button" class="copy" data-target="followPrompt" data-en="Copy follow-up prompt" data-vi="Sao chép câu lệnh hỏi lại">Copy follow-up prompt</button><span class="copyStatus" role="status"></span></div></div>
+</section>
+
+<section>
+<h2><span class="stepno">5</span><span data-en="Answer again and compare" data-vi="Trả lời lại và so sánh">Answer again and compare</span></h2>
+<p data-en="Choose one question. Answer it again out loud. Try to use the feedback." data-vi="Chọn một câu hỏi. Trả lời lại thành tiếng. Cố gắng dùng phản hồi.">Choose one question. Answer it again out loud. Try to use the feedback.</p>
+<label for="repeatQuestion" data-en="Question to answer again" data-vi="Câu hỏi sẽ trả lời lại">Question to answer again</label><select id="repeatQuestion"></select>
+
+<div class="speak" id="speakRetry">
+<div class="check"><input type="checkbox" id="recRetry" class="recOn"><label for="recRetry" data-en="Record my voice. The recording stays on this device." data-vi="Ghi âm giọng nói của tôi. Bản ghi chỉ lưu trên thiết bị này.">Record my voice. The recording stays on this device.</label></div>
+<div class="timer" aria-hidden="true">1:00</div>
+<div class="actions"><button type="button" class="red start" data-en="Start speaking" data-vi="Bắt đầu nói">Start speaking</button><button type="button" class="secondary stop" disabled data-en="Stop" data-vi="Dừng">Stop</button></div>
+<p class="status speakStatus" role="status" aria-live="polite"></p>
+<audio controls class="hidden"></audio>
+</div>
+
+<div class="compare" id="compareWrap">
+<div><h3 data-en="First answer" data-vi="Câu trả lời lần 1">First answer</h3><audio id="firstAudio" controls class="hidden"></audio><p class="status" id="firstNone"></p></div>
+<div><h3 data-en="Second answer" data-vi="Câu trả lời lần 2">Second answer</h3><audio id="secondAudio" controls class="hidden"></audio><p class="status" id="secondNone"></p></div>
+</div>
+
+<label for="changes" data-en="What did I change when I answered again?" data-vi="Tôi đã thay đổi điều gì khi trả lời lại?">What did I change when I answered again?</label><textarea id="changes"></textarea>
+<label for="useful" data-en="Was the feedback useful? Why or why not?" data-vi="Phản hồi có hữu ích không? Tại sao?">Was the feedback useful? Why or why not?</label><textarea id="useful"></textarea>
+<div class="actions"><button type="button" id="download" data-en="Download my reflection" data-vi="Tải bài suy ngẫm">Download my reflection</button><button type="button" id="print" class="secondary" data-en="Print / save as PDF" data-vi="In / lưu dưới dạng PDF">Print / save as PDF</button><span id="saveStatus" class="copyStatus" role="status"></span></div>
+<p class="hint" data-en="Recordings are not saved in the download. Listen to them before you leave this page." data-vi="Bản ghi âm không có trong tệp tải về. Hãy nghe lại trước khi rời trang.">Recordings are not saved in the download. Listen to them before you leave this page.</p>
+</section>
+
+<footer data-en="This activity runs in your browser. It does not send answers or recordings to the MOOC, GitHub, or an AI service. If you paste a prompt or answer into an AI tool, that tool's privacy terms apply. Your work is not saved automatically." data-vi="Hoạt động chạy trong trình duyệt. Trang không gửi câu trả lời hoặc bản ghi âm đến MOOC, GitHub hay dịch vụ AI. Nếu bạn dán câu lệnh hoặc câu trả lời vào công cụ AI, chính sách quyền riêng tư của công cụ đó sẽ áp dụng. Bài làm không được tự động lưu.">This activity runs in your browser. It does not send answers or recordings to the MOOC, GitHub, or an AI service. If you paste a prompt or answer into an AI tool, that tool's privacy terms apply. Your work is not saved automatically.</footer>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+let lang='en',index=0;
+const text=(en,vi)=>lang==='en'?en:vi;
+const sets={
+'daily life':['What do you usually do in the morning?','What do you like to do after school or work?','What is one thing you want to change in your daily routine?'],
+'food':['What food do you like?','When do you usually eat this food?','Can you describe how to make a simple meal?'],
+'studying English':['Why do you want to learn English?','What do you do to practise English?','What is one English skill you want to improve?'],
+'hobbies':['What do you like to do in your free time?','When did you start this hobby?','Why would you tell a friend to try it?'],
+'work or study':['What do you study or do at work?','What is one task you do each week?','What would you like to learn next?'],
+'other':['Why is this topic important to you?','What do you like about this topic?','What would you like to learn about this topic?']
+};
+const notes=['','',''];
+const recs={};
+const selectedTopic=()=>$('topic').value==='other'?($('otherTopic').value.trim()||'my topic'):$('topic').value;
+const currentQuestions=()=>sets[$('topic').value];
+
+/* Warm-up quiz */
+function renderQuiz(fs){
+  const chosen=fs.querySelector('.option[aria-pressed="true"]');const fb=fs.querySelector('.fb');
+  if(!chosen){fb.classList.add('hidden');return}
+  const ok=chosen.dataset.ok==='1';
+  fb.classList.remove('hidden');fb.classList.toggle('no',!ok);
+  fb.textContent=(ok?text('✓ Correct. ','✓ Đúng. '):text('✗ Not quite. ','✗ Chưa đúng. '))+fs.dataset[lang==='en'?'whyEn':'whyVi'];
+}
+document.querySelectorAll('.quiz').forEach(fs=>{
+  fs.querySelectorAll('.option').forEach(b=>{b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{fs.querySelectorAll('.option').forEach(o=>o.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');renderQuiz(fs)})});
+});
+
+/* Prompts */
+const privatePattern=/[^\s@]+@[^\s@]+\.[^\s@]+|\+?\d[\d\s.\-]{7,}\d/;
+function prompts(){
+  const t=selectedTopic();
+  $('ideaPrompt').textContent=`I want to talk about ${t} for 1 minute. Give me 3 key words and 1 sentence starter. Do not write the full answer. Use simple A2 English.`;
+  $('talkPrompt').textContent=`Please be my English speaking partner. Ask me one simple question at a time about ${t}. Wait for my answer before you ask the next question. Ask only 3 questions. Use A2 English. If the questions are too hard, make them easier and use short sentences.`;
+  const ans=$('feedbackAnswer').value.trim();
+  $('feedbackPrompt').textContent=`Here is my answer: ${ans||'[write your answer here]'}. Give me short feedback on one thing: ${$('feedbackType').value}. Give me one example of how to improve it. Use simple A2 English.`;
+  $('privacyWarn').classList.toggle('hidden',!privatePattern.test(ans));
+}
+
+/* Copy */
+async function copy(btn){
+  const status=btn.nextElementSibling;const val=$(btn.dataset.target).textContent;
+  try{
+    if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(val)}
+    else{const ta=document.createElement('textarea');ta.value=val;ta.style.position='fixed';ta.style.opacity='0';document.body.append(ta);ta.select();const ok=document.execCommand('copy');ta.remove();if(!ok)throw Error('copy')}
+    status.textContent=text('Copied.','Đã sao chép.');
+  }catch(e){status.textContent=text('Copy did not work. Select the text and copy it yourself.','Không sao chép được. Hãy tự chọn và sao chép văn bản.')}
+  setTimeout(()=>{status.textContent=''},4000);
+}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>copy(b)));
+
+/* Timer + recorder */
+function setupSpeak(panel,getKey,onSaved){
+  const timerEl=panel.querySelector('.timer'),start=panel.querySelector('.start'),stop=panel.querySelector('.stop'),
+        status=panel.querySelector('.speakStatus'),audio=panel.querySelector('audio'),recOn=panel.querySelector('.recOn');
+  let left=60,iv=null,mr=null,stream=null,chunks=[];
+  const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+  function show(){const u=recs[getKey()];if(u){audio.src=u;audio.classList.remove('hidden')}else{audio.removeAttribute('src');audio.classList.add('hidden')}}
+  async function begin(){
+    if(iv)return;
+    start.disabled=true;
+    if(recOn.checked){
+      if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){
+        status.textContent=text('Recording does not work here. You can still use the timer.','Không ghi âm được ở đây. Bạn vẫn có thể dùng đồng hồ.');
+      }else{
+        try{
+          stream=await navigator.mediaDevices.getUserMedia({audio:true});
+          chunks=[];mr=new MediaRecorder(stream);const key=getKey();
+          mr.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+          mr.onstop=()=>{
+            if(recs[key])URL.revokeObjectURL(recs[key]);
+            recs[key]=URL.createObjectURL(new Blob(chunks,{type:mr.mimeType||'audio/webm'}));
+            if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;mr=null;
+            show();if(onSaved)onSaved();
+            status.textContent=text('Recording saved. Press play to listen.','Đã lưu bản ghi. Nhấn phát để nghe.');
+          };
+          mr.start();
+        }catch(e){status.textContent=text('The microphone is not available. Check your permission. You can still use the timer.','Không dùng được micro. Hãy kiểm tra quyền truy cập. Bạn vẫn có thể dùng đồng hồ.');mr=null}
+      }
+    }
+    left=60;timerEl.textContent=fmt(left);stop.disabled=false;
+    if(!status.textContent||mr)status.textContent=mr?text('Recording… Speak now.','Đang ghi âm… Hãy nói.'):text('Speak now.','Hãy nói.');
+    iv=setInterval(()=>{left--;timerEl.textContent=fmt(left);if(left<=0)end()},1000);
+  }
+  function end(){
+    if(iv){clearInterval(iv);iv=null}
+    start.disabled=false;stop.disabled=true;
+    if(mr&&mr.state!=='inactive'){mr.stop()}
+    else status.textContent=text(`Done. You spoke for ${60-left} seconds.`,`Xong. Bạn đã nói trong ${60-left} giây.`);
+  }
+  function reset(){end();left=60;timerEl.textContent=fmt(60);status.textContent='';show()}
+  start.addEventListener('click',begin);stop.addEventListener('click',end);
+  return{show,reset};
+}
+const practice=setupSpeak($('speakPractice'),()=>'q'+index,()=>updateCompare());
+const retry=setupSpeak($('speakRetry'),()=>'r'+$('repeatQuestion').value,()=>updateCompare());
+
+/* Questions */
+function updateQuestion(){
+  const qs=currentQuestions();
+  $('question').textContent=qs[index];
+  $('count').textContent=text(`Question ${index+1} of 3`,`Câu hỏi ${index+1} / 3`);
+  $('answerNotes').value=notes[index];
+  $('previous').disabled=index===0;$('next').disabled=index===2;
+  $('questionStatus').textContent=index===2?text('This is your last question. Then go to Step 4.','Đây là câu hỏi cuối. Sau đó chuyển sang bước 4.'):'';
+  const sel=$('repeatQuestion'),keep=sel.value;sel.replaceChildren();
+  qs.forEach((q,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=q;sel.append(o)});
+  if([...sel.options].some(o=>o.value===keep))sel.value=keep;
+  practice.show();updateCompare();
+}
+function go(n){notes[index]=$('answerNotes').value;practice.reset();index=n;updateQuestion();$('question').focus()}
+function updateCompare(){
+  const v=$('repeatQuestion').value||'0';
+  [['firstAudio','firstNone','q'+v],['secondAudio','secondNone','r'+v]].forEach(([a,n,k])=>{
+    const u=recs[k];
+    if(u){$(a).src=u;$(a).classList.remove('hidden');$(n).textContent=''}
+    else{$(a).removeAttribute('src');$(a).classList.add('hidden');$(n).textContent=text('No recording yet.','Chưa có bản ghi.')}
+  });
+}
+function changeTopic(){
+  notes.fill('');Object.keys(recs).forEach(k=>{URL.revokeObjectURL(recs[k]);delete recs[k]});
+  practice.reset();retry.reset();index=0;
+  $('otherWrap').classList.toggle('hidden',$('topic').value!=='other');
+  prompts();updateQuestion();
+}
+
+/* Feedback check */
+function updateCheck(){
+  const boxes=[...document.querySelectorAll('.fbCheck')],n=boxes.filter(b=>b.checked).length,res=$('checkResult');
+  const all=n===boxes.length;
+  res.classList.toggle('no',!all&&n>0);
+  if(n===0){res.textContent=text('Read the feedback. Then tick the boxes.','Đọc phản hồi. Sau đó đánh dấu các ô.');$('followUp').classList.add('hidden');return}
+  if(all){res.textContent=text('Good. Use this feedback when you answer again in Step 5.','Tốt. Hãy dùng phản hồi này khi trả lời lại ở bước 5.');$('followUp').classList.add('hidden')}
+  else{res.textContent=text('Not all ticked? That is OK. AI can be wrong or unclear. Ask AI to explain again, or check with a teacher.','Chưa đánh dấu hết? Không sao. AI có thể sai hoặc chưa rõ. Hãy nhờ AI giải thích lại, hoặc hỏi giáo viên.');$('followUp').classList.remove('hidden')}
+}
+document.querySelectorAll('.fbCheck').forEach(b=>b.addEventListener('change',updateCheck));
+
+/* Language */
+function language(){
+  lang=lang==='en'?'vi':'en';document.documentElement.lang=lang;
+  document.querySelectorAll('[data-en]').forEach(e=>e.textContent=e.dataset[lang]);
+  document.querySelectorAll('[data-en-ph]').forEach(e=>e.placeholder=e.dataset[lang==='en'?'enPh':'viPh']);
+  $('langBtn').textContent=lang==='en'?'Tiếng Việt':'English';
+  document.querySelectorAll('.quiz').forEach(renderQuiz);
+  updateQuestion();prompts();updateCheck();
+}
+
+/* Save */
+function save(){
+  notes[index]=$('answerNotes').value;
+  const checks=[...document.querySelectorAll('.fbCheck')].map(b=>(b.checked?'[x] ':'[ ] ')+document.querySelector(`label[for="${b.id}"]`).dataset.en).join('\n');
+  const rows=[
+    ['Topic',selectedTopic()],['My ideas',$('myIdeas').value],
+    ...currentQuestions().map((q,i)=>[q,notes[i]]),
+    ['Feedback type',$('feedbackType').value],['Answer shared for feedback',$('feedbackAnswer').value],
+    ['AI feedback',$('feedbackReceived').value],['Feedback check',checks],
+    ['Question answered again',currentQuestions()[Number($('repeatQuestion').value)||0]],
+    ['What did I change?',$('changes').value],
+    ['Was the feedback useful? Why or why not?',$('useful').value]];
+  const out='SPEAKING PRACTICE REFLECTION\n\n'+rows.map(([k,v])=>k+'\n'+(String(v).trim()||'(not completed)')).join('\n\n')+'\n';
+  const url=URL.createObjectURL(new Blob([out],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');
+  a.href=url;a.download='my-speaking-practice-reflection.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  $('saveStatus').textContent=text('Downloaded. Keep the file.','Đã tải về. Hãy giữ tệp này.');
+}
+
+/* Events */
+$('topic').addEventListener('change',changeTopic);$('otherTopic').addEventListener('input',prompts);
+$('feedbackType').addEventListener('change',prompts);$('feedbackAnswer').addEventListener('input',prompts);
+$('answerNotes').addEventListener('input',()=>notes[index]=$('answerNotes').value);
+$('next').addEventListener('click',()=>{if(index<2)go(index+1)});
+$('previous').addEventListener('click',()=>{if(index>0)go(index-1)});
+$('repeatQuestion').addEventListener('change',()=>{retry.reset();updateCompare()});
+$('langBtn').addEventListener('click',language);
+$('download').addEventListener('click',save);$('print').addEventListener('click',()=>window.print());
+changeTopic();updateCheck();
+})();
+</script>
+</body></html>
