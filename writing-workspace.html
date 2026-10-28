@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing workspace | Independent Learning in the Digital Age</title>
+<style>
+:root{--red:#e61e2a;--blue:#000054;--blue75:#40407f;--blue30:#b3b3cc;--grey:#e3e5e0;--ink:#202039;--muted:#4b5063;--bg:#f4f5f9;--line:#cbd0db;--focus:#0759ba}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--bg);font:16px/1.6 Arial,Helvetica,sans-serif}
+main{max-width:860px;margin:auto;padding:18px 14px 60px}
+header{background:var(--blue);color:#fff;border-top:7px solid var(--red);padding:23px;border-radius:6px}header h1{font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.25;margin:.2em 0}header p{margin:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 13px}
+.saved{font-size:.9rem;color:var(--muted)}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}nav.steps a{flex:1 1 150px;text-decoration:none;color:var(--blue);background:#fff;border:2px solid var(--blue30);border-radius:6px;padding:9px 12px;font-weight:bold;font-size:.95rem}nav.steps a:hover{border-color:var(--blue)}nav.steps .done::after{content:" ✓";color:var(--red)}
+section{background:#fff;border:1px solid var(--line);padding:22px 20px;margin:15px 0;border-radius:7px}
+.label{font-size:.82rem;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin:0}
+h2{font-size:1.4rem;color:var(--blue);margin:2px 0 4px}h2+.rule{width:60px;height:4px;background:var(--red);margin:0 0 14px}
+h3{font-size:1.08rem;margin:22px 0 6px;color:var(--blue)}
+p{margin:9px 0}label,legend{font-weight:bold;display:block;margin:12px 0 6px}
+input[type=text],select,textarea{font:inherit;width:100%;padding:11px 12px;border:2px solid #81889a;border-radius:5px;background:#fff;color:var(--ink)}textarea{min-height:90px;resize:vertical}textarea.big{min-height:220px}
+fieldset{border:0;padding:0;margin:0}
+button{font:inherit;font-weight:bold;border:2px solid var(--blue);border-radius:5px;padding:9px 15px;min-height:44px;cursor:pointer;background:var(--blue);color:#fff}
+button.secondary{background:#fff;color:var(--blue)}button.red{background:var(--red);border-color:var(--red)}button.small{min-height:36px;padding:5px 11px;font-size:.92rem}button:disabled{opacity:.5;cursor:not-allowed}button:hover:not(:disabled){filter:brightness(1.2)}:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0;align-items:center}
+.hint{font-size:.93rem;color:var(--muted)}.count{font-size:.9rem;color:var(--muted);text-align:right;margin-top:4px}
+.note{background:var(--grey);border-left:5px solid var(--red);padding:12px 16px;margin:14px 0;border-radius:0 5px 5px 0}
+.warn{background:#fdf0f1;border-left:5px solid var(--red);padding:10px 14px;border-radius:0 5px 5px 0;margin:8px 0}
+.choices{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.choice{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--blue30);border-radius:6px;padding:10px 12px;cursor:pointer;background:#fff}
+.choice input{width:20px;height:20px;flex:none;margin-top:3px}.choice span{font-weight:normal}.choice:has(input:checked){border-color:var(--blue);background:#f0f2fa}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:#f3f4f8;padding:13px;border-radius:5px;border:1px solid var(--line);margin:8px 0;max-height:260px;overflow:auto}
+.fbRow{border:2px solid var(--blue30);border-radius:7px;padding:12px 14px;margin:12px 0}
+.fbHead{display:flex;justify-content:space-between;align-items:center;gap:8px}.fbHead strong{color:var(--blue)}
+.decide{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.decide button{background:#fff;color:var(--blue);border-color:var(--blue30)}.decide button[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.twoCol{display:grid;gap:14px}@media(min-width:720px){.twoCol{grid-template-columns:1fr 1fr}}
+.original{background:var(--grey);border-radius:5px;padding:12px 14px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:220px}
+.summary dt{font-weight:bold;color:var(--blue);margin-top:10px}.summary dd{margin:2px 0 0}
+.status{font-size:.92rem;color:var(--muted)}
+.hidden{display:none!important}
+footer{font-size:.86rem;color:var(--muted);margin-top:20px}
+@media print{body{background:#fff}main{max-width:100%;padding:0}button,.top,nav.steps,.no-print{display:none!important}section{break-inside:avoid;border:1px solid #999}textarea{border:1px solid #999}}
+</style>
+</head>
+<body>
+<main>
+<div class="top">
+  <span class="saved" id="savedStatus" role="status" aria-live="polite"></span>
+  <button class="secondary small" id="langBtn" type="button">Tiếng Việt</button>
+</div>
+
+<header>
+  <h1 data-en="Writing workspace" data-vi="Không gian viết">Writing workspace</h1>
+  <p data-en="Draft, get targeted support, and revise your own writing." data-vi="Viết bản nháp, nhận hỗ trợ đúng chỗ và tự sửa bài viết của bạn.">Draft, get targeted support, and revise your own writing.</p>
+</header>
+
+<section>
+  <p data-en="Keep this page open in another tab while you work through the module. Do each step when the course tells you to." data-vi="Hãy mở trang này trong một tab khác khi bạn học module. Làm từng bước khi khóa học hướng dẫn.">Keep this page open in another tab while you work through the module. Do each step when the course tells you to.</p>
+  <div class="note">
+    <strong data-en="Your work stays on this device" data-vi="Bài làm chỉ lưu trên thiết bị này">Your work stays on this device</strong>
+    <p data-en="This page saves your work in this browser, so it is still here if you close the tab. It does not send your writing anywhere. If you change device or clear your browser, your work will be lost, so download it at the end of each step." data-vi="Trang này lưu bài làm trong trình duyệt, nên bài vẫn còn nếu bạn đóng tab. Trang không gửi bài viết của bạn đi đâu. Nếu bạn đổi thiết bị hoặc xoá dữ liệu trình duyệt, bài làm sẽ mất, vì vậy hãy tải về sau mỗi bước.">This page saves your work in this browser, so it is still here if you close the tab. It does not send your writing anywhere. If you change device or clear your browser, your work will be lost, so download it at the end of each step.</p>
+  </div>
+</section>
+
+<nav class="steps" aria-label="Steps">
+  <a href="#step1" id="nav1" data-en="Step 1: Draft" data-vi="Bước 1: Viết nháp">Step 1: Draft</a>
+  <a href="#step2" id="nav2" data-en="Step 2: Get support" data-vi="Bước 2: Nhận hỗ trợ">Step 2: Get support</a>
+  <a href="#step3" id="nav3" data-en="Step 3: Revise" data-vi="Bước 3: Sửa bài">Step 3: Revise</a>
+</nav>
+
+<!-- STEP 1 -->
+<section id="step1" tabindex="-1">
+  <p class="label" data-en="Step 1" data-vi="Bước 1">Step 1</p>
+  <h2 data-en="Draft it yourself first" data-vi="Tự viết bản nháp trước">Draft it yourself first</h2><div class="rule"></div>
+
+  <h3 data-en="Choose a writing task" data-vi="Chọn bài viết">Choose a writing task</h3>
+  <p class="hint" data-en="If you set an English goal at the start of the course, choose a task that helps with that goal." data-vi="Nếu bạn đã đặt mục tiêu tiếng Anh ở đầu khóa học, hãy chọn bài viết giúp bạn đạt mục tiêu đó.">If you set an English goal at the start of the course, choose a task that helps with that goal.</p>
+  <fieldset>
+    <legend class="hidden" data-en="Writing task" data-vi="Bài viết">Writing task</legend>
+    <div class="choices" id="taskChoices">
+      <label class="choice"><input type="radio" name="task" value="An email asking for information"><span data-en="An email asking for information" data-vi="Email hỏi thông tin">An email asking for information</span></label>
+      <label class="choice"><input type="radio" name="task" value="An explanation of something I know well"><span data-en="An explanation of something I know well" data-vi="Giải thích điều tôi biết rõ">An explanation of something I know well</span></label>
+      <label class="choice"><input type="radio" name="task" value="A summary of something I read or watched"><span data-en="A summary of something I read or watched" data-vi="Tóm tắt điều tôi đã đọc hoặc xem">A summary of something I read or watched</span></label>
+      <label class="choice"><input type="radio" name="task" value="An opinion paragraph"><span data-en="An opinion paragraph, for example for an essay" data-vi="Đoạn văn nêu ý kiến, ví dụ cho bài luận">An opinion paragraph, for example for an essay</span></label>
+      <label class="choice"><input type="radio" name="task" value="other"><span data-en="Another task" data-vi="Bài viết khác">Another task</span></label>
+    </div>
+  </fieldset>
+  <div id="taskOtherWrap" class="hidden">
+    <label for="taskOther" data-en="Describe your task" data-vi="Mô tả bài viết của bạn">Describe your task</label>
+    <input type="text" id="taskOther" data-key="taskOther" maxlength="120">
+  </div>
+
+  <h3 data-en="Plan (1–2 minutes)" data-vi="Lập dàn ý (1–2 phút)">Plan (1–2 minutes)</h3>
+  <label for="purpose" data-en="What is my purpose? What do I want my reader to know or do?" data-vi="Mục đích của tôi là gì? Tôi muốn người đọc biết hoặc làm gì?">What is my purpose? What do I want my reader to know or do?</label>
+  <input type="text" id="purpose" data-key="purpose" maxlength="200">
+  <label for="reader" data-en="Who will read this?" data-vi="Ai sẽ đọc bài này?">Who will read this?</label>
+  <input type="text" id="reader" data-key="reader" maxlength="200">
+  <label for="points" data-en="What are my 2–3 main points?" data-vi="2–3 ý chính của tôi là gì?">What are my 2–3 main points?</label>
+  <textarea id="points" data-key="points"></textarea>
+
+  <h3 data-en="Write your first draft" data-vi="Viết bản nháp đầu tiên">Write your first draft</h3>
+  <div class="note">
+    <p data-en="Write your ideas first. Fix words and grammar later. Aim for about 80–120 words. Do not ask AI to write it. This is your draft." data-vi="Viết ý tưởng trước. Sửa từ và ngữ pháp sau. Khoảng 80–120 từ. Đừng nhờ AI viết. Đây là bản nháp của bạn.">Write your ideas first. Fix words and grammar later. Aim for about 80–120 words. Do not ask AI to write it. This is your draft.</p>
+  </div>
+  <label for="draft" data-en="My first draft" data-vi="Bản nháp đầu tiên của tôi">My first draft</label>
+  <textarea id="draft" class="big" data-key="draft"></textarea>
+  <div class="count" id="draftCount" aria-live="polite"></div>
+
+  <div class="actions">
+    <button type="button" class="dl" data-en="Download my work" data-vi="Tải bài làm">Download my work</button>
+    <span class="status dlStatus" role="status"></span>
+  </div>
+  <p class="hint" data-en="Finished? Go back to the course for Step 2." data-vi="Xong rồi? Quay lại khóa học để làm Bước 2.">Finished? Go back to the course for Step 2.</p>
+</section>
+
+<!-- STEP 2 -->
+<section id="step2" tabindex="-1">
+  <p class="label" data-en="Step 2" data-vi="Bước 2">Step 2</p>
+  <h2 data-en="Get targeted support" data-vi="Nhận hỗ trợ đúng chỗ">Get targeted support</h2><div class="rule"></div>
+
+  <h3 data-en="What is my main problem?" data-vi="Vấn đề chính của tôi là gì?">What is my main problem?</h3>
+  <fieldset>
+    <legend class="hidden" data-en="Main problem" data-vi="Vấn đề chính">Main problem</legend>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="focus" value="grammar"><span data-en="Grammar" data-vi="Ngữ pháp">Grammar</span></label>
+      <label class="choice"><input type="radio" name="focus" value="word choice"><span data-en="Word choice" data-vi="Chọn từ">Word choice</span></label>
+      <label class="choice"><input type="radio" name="focus" value="clarity"><span data-en="Clarity: is my message clear?" data-vi="Độ rõ ràng: ý tôi có rõ không?">Clarity: is my message clear?</span></label>
+      <label class="choice"><input type="radio" name="focus" value="organisation"><span data-en="Organisation" data-vi="Sắp xếp ý">Organisation</span></label>
+      <label class="choice"><input type="radio" name="focus" value="ideas"><span data-en="Ideas: I need more detail" data-vi="Ý tưởng: tôi cần thêm chi tiết">Ideas: I need more detail</span></label>
+    </div>
+  </fieldset>
+
+  <h3 data-en="Which support will I use?" data-vi="Tôi sẽ dùng hỗ trợ nào?">Which support will I use?</h3>
+  <p class="hint" data-en="Choose one or more." data-vi="Chọn một hoặc nhiều.">Choose one or more.</p>
+  <div class="choices" id="supportChoices">
+    <label class="choice"><input type="checkbox" name="support" value="Model text"><span data-en="Model text: for structure and organisation" data-vi="Bài mẫu: cho cấu trúc và cách sắp xếp">Model text: for structure and organisation</span></label>
+    <label class="choice"><input type="checkbox" name="support" value="Dictionary"><span data-en="Dictionary: for one word or phrase" data-vi="Từ điển: cho một từ hoặc cụm từ">Dictionary: for one word or phrase</span></label>
+    <label class="choice"><input type="checkbox" name="support" value="Friend or classmate"><span data-en="Friend or classmate: is my message clear?" data-vi="Bạn bè: ý của tôi có rõ không?">Friend or classmate: is my message clear?</span></label>
+    <label class="choice"><input type="checkbox" name="support" value="AI"><span data-en="AI: to find and explain problems" data-vi="AI: để tìm và giải thích lỗi">AI: to find and explain problems</span></label>
+  </div>
+
+  <div id="aiBlock" class="hidden">
+    <h3 data-en="Your AI prompt" data-vi="Câu lệnh AI của bạn">Your AI prompt</h3>
+    <div class="note">
+      <strong data-en="Before you use AI" data-vi="Trước khi dùng AI">Before you use AI</strong>
+      <p data-en="Do not share your student ID, full name, or the name of your university or lecturer. AI can be wrong, so check every suggestion. Ask AI to explain, not to rewrite." data-vi="Không chia sẻ mã số sinh viên, họ tên đầy đủ, hoặc tên trường hay giảng viên. AI có thể sai, vì vậy hãy kiểm tra mọi gợi ý. Nhờ AI giải thích, không nhờ AI viết lại.">Do not share your student ID, full name, or the name of your university or lecturer. AI can be wrong, so check every suggestion. Ask AI to explain, not to rewrite.</p>
+    </div>
+    <p class="hint" id="focusHint" data-en="Choose your main problem above to build your prompt." data-vi="Chọn vấn đề chính ở trên để tạo câu lệnh.">Choose your main problem above to build your prompt.</p>
+    <div class="warn hidden" id="privacyWarn" role="alert" data-en="Your draft may include private information (an email, phone number or ID number). Remove it from your draft before you copy the prompt." data-vi="Bản nháp có thể chứa thông tin riêng tư (email, số điện thoại hoặc mã số). Hãy xoá trước khi sao chép câu lệnh.">Your draft may include private information (an email, phone number or ID number). Remove it from your draft before you copy the prompt.</div>
+    <pre id="aiPrompt"></pre>
+    <div class="actions">
+      <button type="button" id="copyPrompt" data-en="Copy prompt" data-vi="Sao chép câu lệnh">Copy prompt</button>
+      <span class="status" id="copyStatus" role="status"></span>
+    </div>
+  </div>
+
+  <h3 data-en="Record the feedback and decide" data-vi="Ghi lại phản hồi và quyết định">Record the feedback and decide</h3>
+  <p data-en="Write or paste each suggestion. Then choose what to do with it." data-vi="Viết hoặc dán từng gợi ý. Sau đó chọn cách xử lý.">Write or paste each suggestion. Then choose what to do with it.</p>
+  <div class="note">
+    <p><strong data-en="Use:" data-vi="Dùng:">Use:</strong> <span data-en="I understand it, and it makes my writing better." data-vi="Tôi hiểu và nó làm bài viết tốt hơn.">I understand it, and it makes my writing better.</span><br>
+    <strong data-en="Reject:" data-vi="Bỏ qua:">Reject:</strong> <span data-en="I think it's wrong, or it doesn't fit my meaning." data-vi="Tôi nghĩ nó sai hoặc không đúng ý tôi.">I think it's wrong, or it doesn't fit my meaning.</span><br>
+    <strong data-en="Investigate:" data-vi="Kiểm tra thêm:">Investigate:</strong> <span data-en="I'm not sure. I need to check another source." data-vi="Tôi chưa chắc. Tôi cần kiểm tra nguồn khác.">I'm not sure. I need to check another source.</span></p>
+    <p class="hint" data-en="If you can't explain why a suggestion is right, don't use it yet." data-vi="Nếu bạn không giải thích được vì sao gợi ý đúng, đừng dùng nó vội.">If you can't explain why a suggestion is right, don't use it yet.</p>
+  </div>
+  <div id="fbList"></div>
+  <div class="actions"><button type="button" class="secondary" id="addFb" data-en="+ Add another suggestion" data-vi="+ Thêm gợi ý">+ Add another suggestion</button></div>
+
+  <div class="actions">
+    <button type="button" class="dl" data-en="Download my work" data-vi="Tải bài làm">Download my work</button>
+    <span class="status dlStatus" role="status"></span>
+  </div>
+  <p class="hint" data-en="Finished? Go back to the course for Step 3." data-vi="Xong rồi? Quay lại khóa học để làm Bước 3.">Finished? Go back to the course for Step 3.</p>
+</section>
+
+<!-- STEP 3 -->
+<section id="step3" tabindex="-1">
+  <p class="label" data-en="Step 3" data-vi="Bước 3">Step 3</p>
+  <h2 data-en="Revise your writing" data-vi="Sửa bài viết">Revise your writing</h2><div class="rule"></div>
+
+  <div class="note">
+    <p><strong data-en="Start big, then go small." data-vi="Bắt đầu từ ý lớn, rồi đến chi tiết nhỏ.">Start big, then go small.</strong> <span data-en="First ideas and organisation, then sentences, then words, grammar and spelling." data-vi="Đầu tiên là ý và cách sắp xếp, sau đó là câu, cuối cùng là từ, ngữ pháp và chính tả.">First ideas and organisation, then sentences, then words, grammar and spelling.</span></p>
+    <p><strong data-en="Make 2–3 changes." data-vi="Sửa 2–3 điểm.">Make 2–3 changes.</strong> <span data-en="You don't need to fix everything. Make the changes yourself." data-vi="Bạn không cần sửa mọi thứ. Hãy tự sửa.">You don't need to fix everything. Make the changes yourself.</span></p>
+  </div>
+
+  <h3 data-en="My decisions from Step 2" data-vi="Quyết định của tôi ở Bước 2">My decisions from Step 2</h3>
+  <div id="useList"></div>
+
+  <div class="twoCol">
+    <div>
+      <h3 data-en="First draft" data-vi="Bản nháp đầu tiên">First draft</h3>
+      <div class="original" id="originalView" aria-label="First draft"></div>
+      <div class="count" id="origCount"></div>
+    </div>
+    <div>
+      <label for="revised" style="margin-top:22px;font-size:1.08rem;color:var(--blue)" data-en="Revised draft" data-vi="Bản đã sửa">Revised draft</label>
+      <textarea id="revised" class="big" data-key="revised"></textarea>
+      <div class="count" id="revCount"></div>
+      <div class="actions">
+        <button type="button" class="secondary small" id="copyDraft" data-en="Start from my first draft" data-vi="Bắt đầu từ bản nháp đầu tiên">Start from my first draft</button>
+        <span class="status" id="copyDraftStatus" role="status"></span>
+      </div>
+    </div>
+  </div>
+
+  <h3 data-en="Compare the two versions" data-vi="So sánh hai bản">Compare the two versions</h3>
+  <label for="improved" data-en="What improved?" data-vi="Điều gì đã tốt hơn?">What improved?</label>
+  <textarea id="improved" data-key="improved"></textarea>
+  <label for="notChanged" data-en="What did I choose not to change? Why?" data-vi="Tôi đã chọn không sửa điều gì? Tại sao?">What did I choose not to change? Why?</label>
+  <textarea id="notChanged" data-key="notChanged"></textarea>
+  <p class="hint" data-en="Check: Can I explain every change? Does it still sound like me?" data-vi="Kiểm tra: Tôi có giải thích được mọi thay đổi không? Bài viết vẫn là giọng của tôi chứ?">Check: Can I explain every change? Does it still sound like me?</p>
+
+  <h3 data-en="One writing area to watch" data-vi="Một điểm cần theo dõi khi viết">One writing area to watch</h3>
+  <p class="hint" data-en="Choose a problem that appears often in your writing." data-vi="Chọn một vấn đề thường xuất hiện trong bài viết của bạn.">Choose a problem that appears often in your writing.</p>
+  <label for="area" class="hidden" data-en="Writing area" data-vi="Điểm cần theo dõi">Writing area</label>
+  <select id="area" data-key="area">
+    <option value="" data-en="Choose one" data-vi="Chọn một">Choose one</option>
+    <option value="Sentence structure" data-en="Sentence structure" data-vi="Cấu trúc câu">Sentence structure</option>
+    <option value="Verb tense" data-en="Verb tense" data-vi="Thì của động từ">Verb tense</option>
+    <option value="Word choice" data-en="Word choice" data-vi="Chọn từ">Word choice</option>
+    <option value="Organisation" data-en="Organisation" data-vi="Sắp xếp ý">Organisation</option>
+    <option value="Linking ideas" data-en="Linking ideas" data-vi="Liên kết ý">Linking ideas</option>
+    <option value="Spelling" data-en="Spelling" data-vi="Chính tả">Spelling</option>
+    <option value="other" data-en="Another area" data-vi="Điểm khác">Another area</option>
+  </select>
+  <div id="areaOtherWrap" class="hidden">
+    <label for="areaOther" data-en="Describe it" data-vi="Mô tả">Describe it</label>
+    <input type="text" id="areaOther" data-key="areaOther" maxlength="120">
+  </div>
+
+  <h3 data-en="Keep this" data-vi="Ghi nhớ">Keep this</h3>
+  <div class="note">
+    <p data-en="Write these in your notebook:" data-vi="Viết những điều này vào sổ tay:">Write these in your notebook:</p>
+    <dl class="summary">
+      <dt data-en="My best support" data-vi="Hỗ trợ hiệu quả nhất">My best support</dt><dd id="sumSupport"></dd>
+      <dt data-en="My feedback rule" data-vi="Quy tắc phản hồi của tôi">My feedback rule</dt><dd data-en="I will ask for focused feedback, check it, and make the final changes myself." data-vi="Tôi sẽ xin phản hồi có trọng tâm, kiểm tra nó và tự mình sửa bài lần cuối.">I will ask for focused feedback, check it, and make the final changes myself.</dd>
+      <dt data-en="My writing area to watch" data-vi="Điểm cần theo dõi khi viết">My writing area to watch</dt><dd id="sumArea"></dd>
+    </dl>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="red dl" data-en="Download my writing" data-vi="Tải bài viết của tôi">Download my writing</button>
+    <button type="button" class="secondary" id="printBtn" data-en="Print / save as PDF" data-vi="In / lưu dưới dạng PDF">Print / save as PDF</button>
+    <span class="status dlStatus" role="status"></span>
+  </div>
+</section>
+
+<section class="no-print">
+  <h3 style="margin-top:0" data-en="Start again" data-vi="Bắt đầu lại">Start again</h3>
+  <p class="hint" data-en="This deletes everything on this page. Download your work first." data-vi="Thao tác này xoá mọi thứ trên trang. Hãy tải bài làm về trước.">This deletes everything on this page. Download your work first.</p>
+  <div class="actions">
+    <button type="button" class="secondary" id="clearBtn" data-en="Delete my work" data-vi="Xoá bài làm">Delete my work</button>
+    <button type="button" class="red hidden" id="clearConfirm" data-en="Yes, delete everything" data-vi="Có, xoá tất cả">Yes, delete everything</button>
+    <button type="button" class="secondary hidden" id="clearCancel" data-en="Cancel" data-vi="Huỷ">Cancel</button>
+  </div>
+</section>
+
+<footer data-en="This activity runs in your browser. It does not send your writing to the MOOC, GitHub, or an AI service. If you paste your writing into an AI tool, that tool's privacy terms apply." data-vi="Hoạt động chạy trong trình duyệt. Trang không gửi bài viết của bạn đến MOOC, GitHub hay dịch vụ AI. Nếu bạn dán bài viết vào công cụ AI, chính sách quyền riêng tư của công cụ đó sẽ áp dụng.">This activity runs in your browser. It does not send your writing to the MOOC, GitHub, or an AI service. If you paste your writing into an AI tool, that tool's privacy terms apply.</footer>
+</main>
+
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const KEY='moet-writing-workspace-v1';
+let lang='en';
+const t=(en,vi)=>lang==='en'?en:vi;
+
+const blank=()=>({task:'',taskOther:'',purpose:'',reader:'',points:'',draft:'',focus:'',supports:[],
+  feedback:[{text:'',source:'',decision:'',why:''},{text:'',source:'',decision:'',why:''}],
+  revised:'',improved:'',notChanged:'',area:'',areaOther:''});
+let S=blank();
+
+/* ---------- storage ---------- */
+let storageOK=true,saveTimer=null;
+function load(){
+  try{const raw=localStorage.getItem(KEY);if(raw){const d=JSON.parse(raw);S=Object.assign(blank(),d);if(!Array.isArray(S.feedback)||!S.feedback.length)S.feedback=blank().feedback;if(!Array.isArray(S.supports))S.supports=[];}}
+  catch(e){storageOK=false}
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>{
+    try{localStorage.setItem(KEY,JSON.stringify(S));storageOK=true;
+      const now=new Date();$('savedStatus').textContent=t('Saved on this device at ','Đã lưu trên thiết bị lúc ')+now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}
+    catch(e){storageOK=false;$('savedStatus').textContent=t('Your work can’t be saved in this browser. Download it before you leave.','Không thể lưu bài làm trong trình duyệt này. Hãy tải về trước khi rời trang.');}
+  },400);
+}
+
+/* ---------- helpers ---------- */
+const words=s=>{const m=s.trim().match(/\S+/g);return m?m.length:0};
+const taskName=()=>S.task==='other'?(S.taskOther.trim()||'my writing task'):(S.task||'');
+const privatePattern=/[^\s@]+@[^\s@]+\.[^\s@]+|\+?\d[\d\s.\-]{7,}\d|\b[sS]\d{6,8}\b/;
+
+/* ---------- prompts ---------- */
+function buildPrompt(){
+  const d=S.draft.trim()||'[Paste your draft here]';
+  const type=S.task==='An opinion paragraph'?'for an essay':(S.task==='An email asking for information'?'as an email':'');
+  const intro=`I wrote the text below${type?' '+type:''}.`;
+  const map={
+    'grammar':`${intro} Identify two grammar problems. Explain each problem in simple English. Do not rewrite my text.`,
+    'word choice':`${intro} Find two words or phrases that are not the best choice for my reader. Explain why in simple English. Do not rewrite my text.`,
+    'clarity':`Read my text below. In one sentence, what is my main point? Is any sentence hard to understand? Explain in simple English. Do not rewrite my text.`,
+    'organisation':`Read my text below. Is it well organised? Tell me what is missing or in the wrong place. Explain in simple English. Do not rewrite my text.`,
+    'ideas':`Read my text below. Ask me 3 questions to help me add more detail. Do not write the answers for me.`
+  };
+  if(!S.focus){$('aiPrompt').textContent='';$('aiPrompt').classList.add('hidden');$('copyPrompt').disabled=true;$('focusHint').classList.remove('hidden');}
+  else{$('aiPrompt').textContent=map[S.focus]+'\n\n'+d;$('aiPrompt').classList.remove('hidden');$('copyPrompt').disabled=false;$('focusHint').classList.add('hidden');}
+  $('privacyWarn').classList.toggle('hidden',!privatePattern.test(S.draft));
+}
+async function copyText(val,statusEl){
+  try{
+    if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(val)}
+    else{const ta=document.createElement('textarea');ta.value=val;ta.style.position='fixed';ta.style.opacity='0';document.body.append(ta);ta.select();const ok=document.execCommand('copy');ta.remove();if(!ok)throw Error('copy')}
+    statusEl.textContent=t('Copied. Paste it into your AI tool.','Đã sao chép. Dán vào công cụ AI của bạn.');
+  }catch(e){statusEl.textContent=t('Copy did not work. Select the text and copy it yourself.','Không sao chép được. Hãy tự chọn và sao chép văn bản.')}
+  setTimeout(()=>{statusEl.textContent=''},5000);
+}
+
+/* ---------- feedback rows ---------- */
+const sources=[['','Where is it from?','Nguồn gợi ý?'],['AI','AI','AI'],['Friend or classmate','Friend or classmate','Bạn bè'],['Dictionary','Dictionary','Từ điển'],['Model text','Model text','Bài mẫu'],['Myself','I noticed it myself','Tôi tự nhận ra']];
+const decisions=[['Use','Use','Dùng'],['Reject','Reject','Bỏ qua'],['Investigate','Investigate','Kiểm tra thêm']];
+function renderFeedback(){
+  const list=$('fbList');list.replaceChildren();
+  S.feedback.forEach((f,i)=>{
+    const row=document.createElement('div');row.className='fbRow';
+    const head=document.createElement('div');head.className='fbHead';
+    const h=document.createElement('strong');h.textContent=t(`Suggestion ${i+1}`,`Gợi ý ${i+1}`);head.append(h);
+    if(S.feedback.length>1){const rm=document.createElement('button');rm.type='button';rm.className='secondary small';rm.textContent=t('Remove','Xoá');
+      rm.setAttribute('aria-label',t(`Remove suggestion ${i+1}`,`Xoá gợi ý ${i+1}`));
+      rm.addEventListener('click',()=>{S.feedback.splice(i,1);renderFeedback();renderUseList();save()});head.append(rm);}
+    row.append(head);
+
+    const tid=`fbText${i}`,sid=`fbSrc${i}`,wid=`fbWhy${i}`;
+    const l1=document.createElement('label');l1.htmlFor=tid;l1.textContent=t('The suggestion','Gợi ý');
+    const ta=document.createElement('textarea');ta.id=tid;ta.value=f.text;ta.style.minHeight='70px';
+    ta.placeholder=t('e.g. My second sentence is too long.','ví dụ: Câu thứ hai của tôi quá dài.');
+    ta.addEventListener('input',()=>{f.text=ta.value;renderUseList();save()});
+    const l2=document.createElement('label');l2.htmlFor=sid;l2.textContent=t('Where is it from?','Gợi ý từ đâu?');
+    const sel=document.createElement('select');sel.id=sid;
+    sources.forEach(([v,en,vi])=>{const o=document.createElement('option');o.value=v;o.textContent=lang==='en'?en:vi;sel.append(o)});
+    sel.value=f.source;sel.addEventListener('change',()=>{f.source=sel.value;save()});
+
+    const l3=document.createElement('p');l3.style.fontWeight='bold';l3.style.margin='12px 0 4px';l3.textContent=t('What will I do?','Tôi sẽ làm gì?');l3.id=`fbDecL${i}`;
+    const dec=document.createElement('div');dec.className='decide';dec.setAttribute('role','group');dec.setAttribute('aria-labelledby',l3.id);
+    decisions.forEach(([v,en,vi])=>{const b=document.createElement('button');b.type='button';b.textContent=lang==='en'?en:vi;b.setAttribute('aria-pressed',String(f.decision===v));
+      b.addEventListener('click',()=>{f.decision=f.decision===v?'':v;renderFeedback();renderUseList();save();const again=$(`fbDecL${i}`);if(again)again.nextElementSibling.querySelectorAll('button')[decisions.findIndex(d=>d[0]===v)].focus()});dec.append(b)});
+
+    const l4=document.createElement('label');l4.htmlFor=wid;l4.textContent=t('Why?','Tại sao?');
+    const why=document.createElement('input');why.type='text';why.id=wid;why.value=f.why;why.maxLength=300;
+    why.addEventListener('input',()=>{f.why=why.value;renderUseList();save()});
+    row.append(l1,ta,l2,sel,l3,dec,l4,why);
+    list.append(row);
+  });
+}
+function renderUseList(){
+  const box=$('useList');box.replaceChildren();
+  const groups=decisions.map(([v,en,vi])=>[v,lang==='en'?en:vi,S.feedback.filter(f=>f.decision===v&&f.text.trim())]);
+  const any=groups.some(g=>g[2].length);
+  if(!any){const p=document.createElement('p');p.className='hint';p.textContent=t('No decisions yet. Go back to Step 2 and choose Use, Reject or Investigate for each suggestion.','Chưa có quyết định. Quay lại Bước 2 và chọn Dùng, Bỏ qua hoặc Kiểm tra thêm cho từng gợi ý.');box.append(p);return}
+  groups.forEach(([v,label,items])=>{
+    if(!items.length)return;
+    const p=document.createElement('p');const b=document.createElement('strong');b.textContent=label+': ';p.append(b);
+    p.append(document.createTextNode(items.map(f=>f.text.trim()).join(' · ')));box.append(p);
+  });
+  const hint=document.createElement('p');hint.className='hint';
+  hint.textContent=t('Make the "Use" changes. For "Investigate", check another source before you decide.','Thực hiện các thay đổi "Dùng". Với "Kiểm tra thêm", hãy kiểm tra nguồn khác trước khi quyết định.');
+  box.append(hint);
+}
+
+/* ---------- step 3 views ---------- */
+function renderStep3(){
+  const o=$('originalView');
+  if(S.draft.trim()){o.textContent=S.draft;o.classList.remove('hint')}
+  else{o.textContent=t('Your first draft from Step 1 will appear here.','Bản nháp đầu tiên từ Bước 1 sẽ hiện ở đây.')}
+  $('origCount').textContent=t(`${words(S.draft)} words`,`${words(S.draft)} từ`);
+  $('revCount').textContent=t(`${words(S.revised)} words`,`${words(S.revised)} từ`);
+  $('areaOtherWrap').classList.toggle('hidden',S.area!=='other');
+  $('sumArea').textContent=S.area==='other'?(S.areaOther||t('(not chosen yet)','(chưa chọn)')):(S.area?$('area').selectedOptions[0].textContent:t('(not chosen yet)','(chưa chọn)'));
+  const sup=S.supports.length?S.supports.map(v=>{const inp=document.querySelector(`input[name="support"][value="${v}"]`);return inp?inp.nextElementSibling.textContent.split(':')[0]:v}).join(', '):t('(choose in Step 2, then write the one that helped most)','(chọn ở Bước 2, rồi ghi hỗ trợ giúp bạn nhiều nhất)');
+  $('sumSupport').textContent=sup;
+}
+function updateDraftInfo(){
+  const n=words(S.draft);
+  let msg=t(`${n} words`,`${n} từ`);
+  if(n>0&&n<60)msg+=t(' · Try to write a little more.',' · Hãy viết thêm một chút.');
+  if(n>160)msg+=t(' · This is long. A shorter draft is easier to revise.',' · Bài khá dài. Bản nháp ngắn hơn sẽ dễ sửa hơn.');
+  $('draftCount').textContent=msg;
+}
+function updateNav(){
+  $('nav1').classList.toggle('done',words(S.draft)>=20);
+  $('nav2').classList.toggle('done',S.feedback.some(f=>f.text.trim()&&f.decision));
+  $('nav3').classList.toggle('done',words(S.revised)>=20&&!!S.improved.trim());
+}
+function refresh(){updateDraftInfo();buildPrompt();renderStep3();updateNav()}
+
+/* ---------- bind simple fields ---------- */
+document.querySelectorAll('[data-key]').forEach(el=>{
+  el.value=S[el.dataset.key]||'';
+});
+function bindFields(){
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const ev=el.tagName==='SELECT'?'change':'input';
+    el.addEventListener(ev,()=>{S[el.dataset.key]=el.value;refresh();save()});
+  });
+  document.querySelectorAll('input[name="task"]').forEach(r=>r.addEventListener('change',()=>{S.task=r.value;$('taskOtherWrap').classList.toggle('hidden',S.task!=='other');refresh();save()}));
+  document.querySelectorAll('input[name="focus"]').forEach(r=>r.addEventListener('change',()=>{S.focus=r.value;refresh();save()}));
+  document.querySelectorAll('input[name="support"]').forEach(c=>c.addEventListener('change',()=>{
+    S.supports=[...document.querySelectorAll('input[name="support"]:checked')].map(x=>x.value);
+    $('aiBlock').classList.toggle('hidden',!S.supports.includes('AI'));refresh();save()}));
+}
+function fillFromState(){
+  document.querySelectorAll('[data-key]').forEach(el=>{el.value=S[el.dataset.key]||''});
+  document.querySelectorAll('input[name="task"]').forEach(r=>r.checked=r.value===S.task);
+  document.querySelectorAll('input[name="focus"]').forEach(r=>r.checked=r.value===S.focus);
+  document.querySelectorAll('input[name="support"]').forEach(c=>c.checked=S.supports.includes(c.value));
+  $('taskOtherWrap').classList.toggle('hidden',S.task!=='other');
+  $('aiBlock').classList.toggle('hidden',!S.supports.includes('AI'));
+  renderFeedback();renderUseList();refresh();
+}
+
+/* ---------- buttons ---------- */
+$('addFb').addEventListener('click',()=>{S.feedback.push({text:'',source:'',decision:'',why:''});renderFeedback();save();const last=$(`fbText${S.feedback.length-1}`);if(last)last.focus()});
+$('copyPrompt').addEventListener('click',()=>copyText($('aiPrompt').textContent,$('copyStatus')));
+let copyArmed=false;
+$('copyDraft').addEventListener('click',()=>{
+  const st=$('copyDraftStatus');
+  if(!S.draft.trim()){st.textContent=t('Write your first draft in Step 1 first.','Hãy viết bản nháp ở Bước 1 trước.');return}
+  if(S.revised.trim()&&!copyArmed){copyArmed=true;st.textContent=t('This will replace your revised draft. Click again to continue.','Thao tác này sẽ thay thế bản đã sửa. Nhấn lần nữa để tiếp tục.');setTimeout(()=>{copyArmed=false},5000);return}
+  copyArmed=false;S.revised=S.draft;$('revised').value=S.draft;st.textContent=t('Your first draft is copied. Now make your changes.','Đã sao chép bản nháp. Bây giờ hãy sửa bài.');refresh();save();$('revised').focus();
+});
+$('printBtn').addEventListener('click',()=>window.print());
+$('clearBtn').addEventListener('click',()=>{$('clearConfirm').classList.remove('hidden');$('clearCancel').classList.remove('hidden');$('clearConfirm').focus()});
+$('clearCancel').addEventListener('click',()=>{$('clearConfirm').classList.add('hidden');$('clearCancel').classList.add('hidden')});
+$('clearConfirm').addEventListener('click',()=>{
+  S=blank();try{localStorage.removeItem(KEY)}catch(e){}
+  fillFromState();$('clearConfirm').classList.add('hidden');$('clearCancel').classList.add('hidden');
+  $('savedStatus').textContent=t('Your work was deleted.','Bài làm đã được xoá.');window.scrollTo(0,0);
+});
+
+/* ---------- download ---------- */
+function download(statusEl){
+  const v=s=>(s&&String(s).trim())||'(not completed)';
+  const fb=S.feedback.filter(f=>f.text.trim()).map((f,i)=>`${i+1}. ${f.text.trim()}\n   From: ${v(f.source)}\n   Decision: ${v(f.decision)}\n   Why: ${v(f.why)}`).join('\n\n')||'(not completed)';
+  const area=S.area==='other'?S.areaOther:S.area;
+  const out=[
+    'MY WRITING WORKSPACE','Independent English Learning in the Digital Age','Downloaded: '+new Date().toLocaleString(),'',
+    '=== STEP 1: DRAFT ===','Task: '+v(taskName()),'Purpose: '+v(S.purpose),'Reader: '+v(S.reader),'Main points:\n'+v(S.points),'',
+    'First draft ('+words(S.draft)+' words):\n'+v(S.draft),'',
+    '=== STEP 2: GET SUPPORT ===','Main problem: '+v(S.focus),'Support used: '+v(S.supports.join(', ')),'',
+    'Feedback and decisions:\n'+fb,'',
+    '=== STEP 3: REVISE ===','Revised draft ('+words(S.revised)+' words):\n'+v(S.revised),'',
+    'What improved?\n'+v(S.improved),'','What did I choose not to change? Why?\n'+v(S.notChanged),'',
+    '=== KEEP THIS ===','My best support: '+v(S.supports.join(', ')),'My feedback rule: I will ask for focused feedback, check it, and make the final changes myself.','My writing area to watch: '+v(area),''
+  ].join('\n');
+  const url=URL.createObjectURL(new Blob([out],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');
+  a.href=url;a.download='my-writing-workspace.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  statusEl.textContent=t('Downloaded. Keep the file.','Đã tải về. Hãy giữ tệp này.');setTimeout(()=>{statusEl.textContent=''},6000);
+}
+document.querySelectorAll('.dl').forEach(b=>b.addEventListener('click',()=>download(b.parentElement.querySelector('.dlStatus'))));
+
+/* ---------- language ---------- */
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-en]').forEach(e=>e.textContent=e.dataset[lang]);
+  $('langBtn').textContent=lang==='en'?'Tiếng Việt':'English';
+  renderFeedback();renderUseList();refresh();
+}
+$('langBtn').addEventListener('click',()=>{lang=lang==='en'?'vi':'en';applyLang()});
+
+/* ---------- start ---------- */
+load();bindFields();fillFromState();
+if(!storageOK)$('savedStatus').textContent=t('Your work can’t be saved in this browser. Download it before you leave.','Không thể lưu bài làm trong trình duyệt này. Hãy tải về trước khi rời trang.');
+else if(S.draft||S.purpose)$('savedStatus').textContent=t('Welcome back. Your work is still here.','Chào mừng bạn quay lại. Bài làm vẫn còn đây.');
+})();
+</script>
+</body>
+</html>
