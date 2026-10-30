@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My self-study plan | Independent Learning in the Digital Age</title>
+<style>
+:root{--red:#e61e2a;--blue:#000054;--blue75:#40407f;--blue30:#b3b3cc;--grey:#e3e5e0;--ink:#202039;--muted:#4b5063;--bg:#f4f5f9;--line:#cbd0db;--focus:#0759ba}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--bg);font:16px/1.6 Arial,Helvetica,sans-serif}
+main{max-width:880px;margin:auto;padding:18px 14px 60px}
+header{background:var(--blue);color:#fff;border-top:7px solid var(--red);padding:23px;border-radius:6px}header h1{font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.25;margin:.2em 0}header p{margin:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 13px}.saved{font-size:.9rem;color:var(--muted)}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}nav.steps a{flex:1 1 150px;text-decoration:none;color:var(--blue);background:#fff;border:2px solid var(--blue30);border-radius:6px;padding:9px 12px;font-weight:bold;font-size:.95rem}nav.steps a:hover{border-color:var(--blue)}nav.steps .done::after{content:" ✓";color:var(--red)}
+section{background:#fff;border:1px solid var(--line);padding:22px 20px;margin:15px 0;border-radius:7px}
+.label{font-size:.82rem;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin:0}
+h2{font-size:1.4rem;color:var(--blue);margin:2px 0 4px}.rule{width:60px;height:4px;background:var(--red);margin:0 0 14px}
+h3{font-size:1.08rem;margin:24px 0 6px;color:var(--blue)}
+p{margin:9px 0}label,legend{font-weight:bold;display:block;margin:12px 0 6px}
+input[type=text],input[type=number],select,textarea{font:inherit;width:100%;padding:10px 12px;border:2px solid #81889a;border-radius:5px;background:#fff;color:var(--ink)}textarea{min-height:80px;resize:vertical}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+button{font:inherit;font-weight:bold;border:2px solid var(--blue);border-radius:5px;padding:9px 15px;min-height:44px;cursor:pointer;background:var(--blue);color:#fff}
+button.secondary{background:#fff;color:var(--blue)}button.red{background:var(--red);border-color:var(--red)}button.small{min-height:36px;padding:5px 11px;font-size:.92rem}button:disabled{opacity:.5;cursor:not-allowed}button:hover:not(:disabled){filter:brightness(1.2)}:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0;align-items:center}
+.hint{font-size:.93rem;color:var(--muted)}.status{font-size:.92rem;color:var(--muted)}
+.note{background:var(--grey);border-left:5px solid var(--red);padding:12px 16px;margin:14px 0;border-radius:0 5px 5px 0}
+.warn{background:#fdf0f1;border-left:5px solid var(--red);padding:10px 14px;border-radius:0 5px 5px 0;margin:8px 0}
+.okmsg{background:#f0f2fa;border-left:5px solid var(--blue);padding:10px 14px;border-radius:0 5px 5px 0;margin:8px 0}
+.choices{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.choice{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--blue30);border-radius:6px;padding:9px 12px;cursor:pointer;background:#fff;font-weight:normal;margin:0}
+.choice input{width:20px;height:20px;flex:none;margin-top:3px}.choice:has(input:checked){border-color:var(--blue);background:#f0f2fa}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+.chip{background:#fff;color:var(--blue);border:1px solid var(--blue30);border-radius:20px;font-weight:normal;font-size:.9rem;min-height:34px;padding:4px 12px}
+.chip:hover{border-color:var(--blue)}.chip::before{content:"+ ";font-weight:bold;color:var(--red)}
+.chipsLabel{font-size:.88rem;color:var(--muted);margin:8px 0 0}
+.routine{width:100%;border-collapse:collapse;margin:8px 0}
+.routine th{text-align:left;font-size:.88rem;color:var(--blue);padding:6px;border-bottom:2px solid var(--blue30)}
+.routine td{padding:6px;vertical-align:top;border-bottom:1px solid var(--line)}
+.routine input,.routine select{padding:8px}.routine td.num{width:90px}.routine td.day{width:120px}.routine td.rm{width:44px}
+@media(max-width:700px){
+ .routine thead{display:none}.routine,.routine tbody,.routine tr,.routine td{display:block;width:100%!important}
+ .routine tr{border:2px solid var(--blue30);border-radius:7px;padding:8px 10px;margin:10px 0}
+ .routine td{border:0;padding:4px 0}.routine td::before{content:attr(data-th);display:block;font-weight:bold;font-size:.88rem;color:var(--blue)}
+ .routine td.rm::before{content:none}
+}
+.total{font-weight:bold;color:var(--blue)}
+.plan{border:2px solid var(--blue);border-radius:8px;padding:20px 22px;background:#fff}
+.plan h3{margin:0 0 4px;font-size:1.3rem}.plan dl{margin:0}.plan dt{font-weight:bold;color:var(--red);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-top:16px}
+.plan dd{margin:3px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.plan .empty{color:var(--muted);font-style:italic}
+.plan table{border-collapse:collapse;width:100%;margin-top:4px;font-size:.95rem}.plan th,.plan td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}.plan th{background:var(--grey);color:var(--blue)}
+.hidden{display:none!important}
+footer{font-size:.86rem;color:var(--muted);margin-top:20px}
+@media print{
+ body{background:#fff;font-size:12pt}main{max-width:100%;padding:0}
+ body.printPlan header,body.printPlan nav,body.printPlan section:not(#summary),body.printPlan footer,body.printPlan .top{display:none!important}
+ body.printPlan #summary{border:0;padding:0}body.printPlan #summary .intro{display:none}
+ button,.top,nav.steps,.no-print,.chips,.chipsLabel{display:none!important}section{break-inside:avoid;border:1px solid #999}
+}
+</style>
+</head>
+<body>
+<main>
+<div class="top">
+  <span class="saved" id="savedStatus" role="status" aria-live="polite"></span>
+  <button class="secondary small" id="langBtn" type="button">Tiếng Việt</button>
+</div>
+
+<header>
+  <h1 data-en="My self-study plan" data-vi="Kế hoạch tự học của tôi">My self-study plan</h1>
+  <p data-en="Bring your ideas from this course together into one plan you can really follow." data-vi="Kết hợp các ý tưởng từ khóa học thành một kế hoạch bạn thật sự có thể thực hiện.">Bring your ideas from this course together into one plan you can really follow.</p>
+</header>
+
+<section>
+  <p data-en="Have your notebook ready. Use your Keep this notes from each module. If you skipped some modules, that's fine. Answer from your situation now." data-vi="Hãy chuẩn bị sổ tay. Dùng các ghi chú Ghi nhớ từ mỗi module. Nếu bạn bỏ qua một số module, không sao. Hãy trả lời theo tình hình hiện tại của bạn.">Have your notebook ready. Use your Keep this notes from each module. If you skipped some modules, that's fine. Answer from your situation now.</p>
+  <p class="hint" data-en="Tip: buttons with + add an example to the box. You can change the words." data-vi="Mẹo: nút có dấu + sẽ thêm ví dụ vào ô. Bạn có thể sửa lại.">Tip: buttons with + add an example to the box. You can change the words.</p>
+  <div class="note">
+    <strong data-en="Your plan stays on this device" data-vi="Kế hoạch chỉ lưu trên thiết bị này">Your plan stays on this device</strong>
+    <p data-en="This page saves your answers in this browser. It does not send them anywhere. If you change device or clear your browser, your answers will be lost, so download or print your plan at the end." data-vi="Trang này lưu câu trả lời trong trình duyệt. Trang không gửi chúng đi đâu. Nếu bạn đổi thiết bị hoặc xoá dữ liệu trình duyệt, câu trả lời sẽ mất, vì vậy hãy tải về hoặc in kế hoạch ở cuối trang.">This page saves your answers in this browser. It does not send them anywhere. If you change device or clear your browser, your answers will be lost, so download or print your plan at the end.</p>
+  </div>
+</section>
+
+<nav class="steps" aria-label="Parts">
+  <a href="#part1" id="nav1" data-en="1: Bring it together" data-vi="1: Tổng hợp">1: Bring it together</a>
+  <a href="#part2" id="nav2" data-en="2: AI and progress" data-vi="2: AI và tiến bộ">2: AI and progress</a>
+  <a href="#part3" id="nav3" data-en="3: Review" data-vi="3: Xem lại">3: Review</a>
+  <a href="#summary" id="nav4" data-en="My plan" data-vi="Kế hoạch">My plan</a>
+</nav>
+
+<!-- PART 1 -->
+<section id="part1" tabindex="-1">
+  <p class="label" data-en="Part 1" data-vi="Phần 1">Part 1</p>
+  <h2 data-en="Bring your ideas together" data-vi="Tổng hợp ý tưởng">Bring your ideas together</h2><div class="rule"></div>
+  <p data-en="Choose the ideas that are most useful for you. Your plan does not need to include everything." data-vi="Chọn những ý hữu ích nhất cho bạn. Kế hoạch không cần có mọi thứ.">Choose the ideas that are most useful for you. Your plan does not need to include everything.</p>
+
+  <label for="goal" data-en="1. My main English goal" data-vi="1. Mục tiêu tiếng Anh chính của tôi">1. My main English goal</label>
+  <p class="hint" data-en="Make it specific: what, how often, and for how long." data-vi="Hãy cụ thể: làm gì, bao lâu một lần, và trong bao lâu.">Make it specific: what, how often, and for how long.</p>
+  <textarea id="goal" data-key="goal"></textarea>
+
+  <fieldset>
+    <legend data-en="2. The skills I most need to work on" data-vi="2. Kỹ năng tôi cần luyện nhất">2. The skills I most need to work on</legend>
+    <p class="hint" data-en="Choose 1–3." data-vi="Chọn 1–3.">Choose 1–3.</p>
+    <div class="choices" id="skillChoices">
+      <label class="choice"><input type="checkbox" name="skill" value="Listening"><span data-en="Listening" data-vi="Nghe">Listening</span></label>
+      <label class="choice"><input type="checkbox" name="skill" value="Speaking"><span data-en="Speaking" data-vi="Nói">Speaking</span></label>
+      <label class="choice"><input type="checkbox" name="skill" value="Reading"><span data-en="Reading" data-vi="Đọc">Reading</span></label>
+      <label class="choice"><input type="checkbox" name="skill" value="Writing"><span data-en="Writing" data-vi="Viết">Writing</span></label>
+      <label class="choice"><input type="checkbox" name="skill" value="Vocabulary"><span data-en="Vocabulary" data-vi="Từ vựng">Vocabulary</span></label>
+      <label class="choice"><input type="checkbox" name="skill" value="Grammar"><span data-en="Grammar" data-vi="Ngữ pháp">Grammar</span></label>
+    </div>
+    <div class="warn hidden" id="skillWarn" data-en="That's a lot. Choosing 1–3 skills makes your plan easier to follow." data-vi="Khá nhiều. Chọn 1–3 kỹ năng sẽ giúp kế hoạch dễ thực hiện hơn.">That's a lot. Choosing 1–3 skills makes your plan easier to follow.</div>
+  </fieldset>
+
+  <label for="strategies" data-en="3. Strategies that were useful for me" data-vi="3. Chiến lược hữu ích với tôi">3. Strategies that were useful for me</label>
+  <textarea id="strategies" data-key="strategies"></textarea>
+  <p class="chipsLabel" data-en="Examples from the course:" data-vi="Ví dụ từ khóa học:">Examples from the course:</p>
+  <div class="chips" data-target="strategies" data-items="Listen with a purpose: main idea first, then details|Shadowing|Rehearsal before I speak|Self-recording|Preview and skim before I read|Guess meaning from context|Draft, get feedback, then revise|Retrieval: cover, remember, check"></div>
+
+  <label for="resources" data-en="4. Resources and support I can really use" data-vi="4. Tài liệu và hỗ trợ tôi thật sự có thể dùng">4. Resources and support I can really use</label>
+  <textarea id="resources" data-key="resources"></textarea>
+  <p class="chipsLabel" data-en="Examples:" data-vi="Ví dụ:">Examples:</p>
+  <div class="chips" data-target="resources" data-items="Short videos with subtitles|Podcasts|News articles|A learner's dictionary|A study partner or friend|My course materials|A flashcard app"></div>
+
+  <label for="tools" data-en="5. Digital or AI tools I may use" data-vi="5. Công cụ số hoặc AI tôi có thể dùng">5. Digital or AI tools I may use</label>
+  <input type="text" id="tools" data-key="tools" maxlength="200">
+
+  <h3 data-en="6. My weekly routine" data-vi="6. Lịch học hằng tuần">6. My weekly routine</h3>
+  <p data-en="Don't try to practise every skill every day. Choose a few useful sessions that fit your time." data-vi="Đừng cố luyện mọi kỹ năng mỗi ngày. Chọn vài buổi học hữu ích phù hợp với thời gian của bạn.">Don't try to practise every skill every day. Choose a few useful sessions that fit your time.</p>
+  <label for="available" data-en="How many minutes a week do I really have?" data-vi="Mỗi tuần tôi thật sự có bao nhiêu phút?">How many minutes a week do I really have?</label>
+  <input type="number" id="available" data-key="available" min="0" max="5000" step="5" style="max-width:180px">
+  <table class="routine">
+    <thead><tr>
+      <th data-en="Day" data-vi="Ngày">Day</th>
+      <th data-en="What I will practise" data-vi="Tôi sẽ luyện gì">What I will practise</th>
+      <th data-en="Minutes" data-vi="Số phút">Minutes</th>
+      <th data-en="Resource or support" data-vi="Tài liệu hoặc hỗ trợ">Resource or support</th>
+      <th data-en="Purpose" data-vi="Mục đích">Purpose</th>
+      <th><span class="hidden">Remove</span></th>
+    </tr></thead>
+    <tbody id="routineBody"></tbody>
+  </table>
+  <div class="actions"><button type="button" class="secondary" id="addRow" data-en="+ Add a session" data-vi="+ Thêm buổi học">+ Add a session</button></div>
+  <p class="total" id="totalLine" aria-live="polite"></p>
+  <div id="timeMsg" aria-live="polite"></div>
+  <div class="note">
+    <strong data-en="Example session" data-vi="Ví dụ một buổi học">Example session</strong>
+    <p data-en="Tuesday · Listen to a short video, main idea then details · 20 minutes · YouTube with subtitles · Understand lectures" data-vi="Thứ Ba · Nghe một video ngắn, ý chính rồi chi tiết · 20 phút · YouTube có phụ đề · Hiểu bài giảng">Tuesday · Listen to a short video, main idea then details · 20 minutes · YouTube with subtitles · Understand lectures</p>
+  </div>
+
+  <h3 data-en="7. Reality check" data-vi="7. Kiểm tra thực tế">7. Reality check</h3>
+  <p class="hint" data-en="Tick each one that is true." data-vi="Đánh dấu những điều đúng.">Tick each one that is true.</p>
+  <div class="choices" style="grid-template-columns:1fr">
+    <label class="choice"><input type="checkbox" class="rc" value="time"><span data-en="It fits the time I really have." data-vi="Phù hợp với thời gian thật sự của tôi.">It fits the time I really have.</span></label>
+    <label class="choice"><input type="checkbox" class="rc" value="purpose"><span data-en="Each session has a clear purpose." data-vi="Mỗi buổi học có mục đích rõ ràng.">Each session has a clear purpose.</span></label>
+    <label class="choice"><input type="checkbox" class="rc" value="access"><span data-en="I can get the resources and support I need." data-vi="Tôi có thể có được tài liệu và hỗ trợ cần thiết.">I can get the resources and support I need.</span></label>
+    <label class="choice"><input type="checkbox" class="rc" value="busy"><span data-en="I could still follow it in a busy week." data-vi="Tôi vẫn có thể làm theo trong tuần bận rộn.">I could still follow it in a busy week.</span></label>
+  </div>
+  <div id="rcMsg" aria-live="polite"></div>
+  <label for="change" data-en="One change I need to make (if any)" data-vi="Một điều tôi cần thay đổi (nếu có)">One change I need to make (if any)</label>
+  <input type="text" id="change" data-key="change" maxlength="200">
+</section>
+
+<!-- PART 2 -->
+<section id="part2" tabindex="-1">
+  <p class="label" data-en="Part 2" data-vi="Phần 2">Part 2</p>
+  <h2 data-en="AI and progress" data-vi="AI và sự tiến bộ">AI and progress</h2><div class="rule"></div>
+
+  <h3 data-en="How will AI and digital tools support me?" data-vi="AI và công cụ số sẽ hỗ trợ tôi thế nào?">How will AI and digital tools support me?</h3>
+  <div class="note">
+    <p data-en="AI tools are outside services. Don't share private information. AI can be wrong, so check what it says and make your own decisions. Use AI to help you learn, not to think, speak or write for you." data-vi="Công cụ AI là dịch vụ bên ngoài. Không chia sẻ thông tin riêng tư. AI có thể sai, vì vậy hãy kiểm tra và tự quyết định. Dùng AI để giúp bạn học, không để nó suy nghĩ, nói hoặc viết thay bạn.">AI tools are outside services. Don't share private information. AI can be wrong, so check what it says and make your own decisions. Use AI to help you learn, not to think, speak or write for you.</p>
+  </div>
+  <label for="aiUse" data-en="8. I will use AI or digital tools to…" data-vi="8. Tôi sẽ dùng AI hoặc công cụ số để…">8. I will use AI or digital tools to…</label>
+  <textarea id="aiUse" data-key="aiUse"></textarea>
+  <div class="chips" data-target="aiUse" data-items="Explain one difficult sentence|Ask me speaking practice questions|Give feedback on one area of my writing|Explain a grammar pattern with examples|Make easier questions when I need them"></div>
+  <label for="aiNot" data-en="9. I will NOT use them to…" data-vi="9. Tôi sẽ KHÔNG dùng chúng để…">9. I will NOT use them to…</label>
+  <textarea id="aiNot" data-key="aiNot"></textarea>
+  <div class="chips" data-target="aiNot" data-items="Write my essays or paragraphs|Summarise a whole text instead of reading it|Give me answers before I try|Rewrite my writing for me|Store my private information"></div>
+
+  <h3 data-en="10. Signs of progress" data-vi="10. Dấu hiệu tiến bộ">10. Signs of progress</h3>
+  <p data-en="How will you know your plan is working? Choose 2–3 signs that connect to your goal." data-vi="Làm sao bạn biết kế hoạch hiệu quả? Chọn 2–3 dấu hiệu gắn với mục tiêu của bạn.">How will you know your plan is working? Choose 2–3 signs that connect to your goal.</p>
+  <label for="prog1" data-en="Sign 1" data-vi="Dấu hiệu 1">Sign 1</label><input type="text" id="prog1" data-key="prog1" maxlength="200">
+  <label for="prog2" data-en="Sign 2" data-vi="Dấu hiệu 2">Sign 2</label><input type="text" id="prog2" data-key="prog2" maxlength="200">
+  <label for="prog3" data-en="Sign 3 (optional)" data-vi="Dấu hiệu 3 (không bắt buộc)">Sign 3 (optional)</label><input type="text" id="prog3" data-key="prog3" maxlength="200">
+  <p class="chipsLabel" data-en="Examples (fills the next empty box):" data-vi="Ví dụ (điền vào ô trống tiếp theo):">Examples (fills the next empty box):</p>
+  <div class="chips" data-target="prog" data-items="Understand the main idea of a 5-minute video without subtitles|Speak for 2 minutes with fewer long pauses|Read a short article and find the main idea in 3 minutes|Write a paragraph with fewer repeated grammar problems|Remember and use 10 useful phrases|Use one new grammar pattern correctly in my writing"></div>
+
+  <fieldset>
+    <legend data-en="11. How will I check my progress?" data-vi="11. Tôi sẽ kiểm tra tiến bộ thế nào?">11. How will I check my progress?</legend>
+    <p class="hint" data-en="Choose one or more that you can keep doing." data-vi="Chọn một hoặc nhiều cách bạn có thể duy trì.">Choose one or more that you can keep doing.</p>
+    <div class="choices" id="checkChoices">
+      <label class="choice"><input type="checkbox" name="check" value="A short weekly reflection"><span data-en="A short weekly reflection" data-vi="Suy ngẫm ngắn mỗi tuần">A short weekly reflection</span></label>
+      <label class="choice"><input type="checkbox" name="check" value="Saved speaking recordings"><span data-en="Saved speaking recordings" data-vi="Lưu bản ghi âm phần nói">Saved speaking recordings</span></label>
+      <label class="choice"><input type="checkbox" name="check" value="Writing samples"><span data-en="Writing samples" data-vi="Lưu bài viết mẫu">Writing samples</span></label>
+      <label class="choice"><input type="checkbox" name="check" value="Vocabulary retrieval checks"><span data-en="Vocabulary retrieval checks" data-vi="Tự kiểm tra từ vựng">Vocabulary retrieval checks</span></label>
+      <label class="choice"><input type="checkbox" name="check" value="A simple study log"><span data-en="A simple study log" data-vi="Nhật ký học tập đơn giản">A simple study log</span></label>
+    </div>
+    <label for="checkOther" data-en="Another way (optional)" data-vi="Cách khác (không bắt buộc)">Another way (optional)</label>
+    <input type="text" id="checkOther" data-key="checkOther" maxlength="200">
+  </fieldset>
+</section>
+
+<!-- PART 3 -->
+<section id="part3" tabindex="-1">
+  <p class="label" data-en="Part 3" data-vi="Phần 3">Part 3</p>
+  <h2 data-en="Review and change your plan" data-vi="Xem lại và điều chỉnh kế hoạch">Review and change your plan</h2><div class="rule"></div>
+  <p data-en="A plan should not stay the same forever. Use it for a short time, then check what is working." data-vi="Kế hoạch không nên giữ nguyên mãi. Hãy dùng nó một thời gian ngắn, rồi kiểm tra điều gì hiệu quả.">A plan should not stay the same forever. Use it for a short time, then check what is working.</p>
+
+  <fieldset>
+    <legend data-en="12. When will I review my plan?" data-vi="12. Khi nào tôi sẽ xem lại kế hoạch?">12. When will I review my plan?</legend>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="review" value="2w"><span data-en="After 2 weeks" data-vi="Sau 2 tuần">After 2 weeks</span></label>
+      <label class="choice"><input type="radio" name="review" value="1m"><span data-en="After 1 month" data-vi="Sau 1 tháng">After 1 month</span></label>
+      <label class="choice"><input type="radio" name="review" value="other"><span data-en="Another time" data-vi="Thời điểm khác">Another time</span></label>
+    </div>
+    <div id="reviewOtherWrap" class="hidden">
+      <label for="reviewOther" data-en="When?" data-vi="Khi nào?">When?</label>
+      <input type="text" id="reviewOther" data-key="reviewOther" maxlength="100">
+    </div>
+    <p class="okmsg hidden" id="reviewDate"></p>
+  </fieldset>
+
+  <h3 data-en="13. When will I keep, change or stop a strategy?" data-vi="13. Khi nào tôi giữ, thay đổi hoặc dừng một chiến lược?">13. When will I keep, change or stop a strategy?</h3>
+  <label for="keepIf" data-en="I will keep a strategy if…" data-vi="Tôi sẽ giữ một chiến lược nếu…">I will keep a strategy if…</label>
+  <input type="text" id="keepIf" data-key="keepIf" maxlength="200">
+  <div class="chips" data-target="keepIf" data-items="I can see progress|I enjoy it and do it regularly"></div>
+  <label for="changeIf" data-en="I will change a strategy if…" data-vi="Tôi sẽ thay đổi một chiến lược nếu…">I will change a strategy if…</label>
+  <input type="text" id="changeIf" data-key="changeIf" maxlength="200">
+  <div class="chips" data-target="changeIf" data-items="it is too easy or too difficult|it doesn't fit my time"></div>
+  <label for="stopIf" data-en="I will stop or replace a strategy if…" data-vi="Tôi sẽ dừng hoặc thay chiến lược nếu…">I will stop or replace a strategy if…</label>
+  <input type="text" id="stopIf" data-key="stopIf" maxlength="200">
+  <div class="chips" data-target="stopIf" data-items="I don't do it for 2 weeks|I can't get the resource|I don't see any progress"></div>
+
+  <label for="firstStep" data-en="14. The first thing I will do after this course" data-vi="14. Việc đầu tiên tôi sẽ làm sau khóa học">14. The first thing I will do after this course</label>
+  <p class="hint" data-en="Make it small and specific, for example: On Monday, I will listen to one 5-minute video and write the main idea." data-vi="Hãy làm cho nó nhỏ và cụ thể, ví dụ: Thứ Hai, tôi sẽ nghe một video 5 phút và viết ý chính.">Make it small and specific, for example: On Monday, I will listen to one 5-minute video and write the main idea.</p>
+  <textarea id="firstStep" data-key="firstStep"></textarea>
+</section>
+
+<!-- SUMMARY -->
+<section id="summary" tabindex="-1">
+  <div class="intro">
+    <p class="label" data-en="Your plan" data-vi="Kế hoạch của bạn">Your plan</p>
+    <h2 data-en="My self-study plan" data-vi="Kế hoạch tự học của tôi">My self-study plan</h2><div class="rule"></div>
+    <p data-en="Your plan is made from your answers above. Download it, print it, or copy it into your notebook." data-vi="Kế hoạch được tạo từ câu trả lời của bạn ở trên. Hãy tải về, in, hoặc chép vào sổ tay.">Your plan is made from your answers above. Download it, print it, or copy it into your notebook.</p>
+  </div>
+  <div class="plan" id="planView"></div>
+  <div class="actions">
+    <button type="button" class="red" id="dlBtn" data-en="Download my plan" data-vi="Tải kế hoạch">Download my plan</button>
+    <button type="button" class="secondary" id="printBtn" data-en="Print / save as PDF" data-vi="In / lưu dưới dạng PDF">Print / save as PDF</button>
+    <span class="status" id="dlStatus" role="status"></span>
+  </div>
+  <div class="note">
+    <p><strong data-en="A useful plan is not the biggest plan." data-vi="Kế hoạch hữu ích không phải là kế hoạch lớn nhất.">A useful plan is not the biggest plan.</strong> <span data-en="It is a plan you can follow, check and change. Start with your first step. At your review point, keep what works and change what doesn't." data-vi="Đó là kế hoạch bạn có thể làm theo, kiểm tra và thay đổi. Hãy bắt đầu với bước đầu tiên. Đến lúc xem lại, giữ những gì hiệu quả và thay đổi những gì chưa hiệu quả.">It is a plan you can follow, check and change. Start with your first step. At your review point, keep what works and change what doesn't.</span></p>
+  </div>
+</section>
+
+<section class="no-print">
+  <h3 style="margin-top:0" data-en="Start again" data-vi="Bắt đầu lại">Start again</h3>
+  <p class="hint" data-en="This deletes everything on this page. Download your plan first." data-vi="Thao tác này xoá mọi thứ trên trang. Hãy tải kế hoạch về trước.">This deletes everything on this page. Download your plan first.</p>
+  <div class="actions">
+    <button type="button" class="secondary" id="clearBtn" data-en="Delete my plan" data-vi="Xoá kế hoạch">Delete my plan</button>
+    <button type="button" class="red hidden" id="clearConfirm" data-en="Yes, delete everything" data-vi="Có, xoá tất cả">Yes, delete everything</button>
+    <button type="button" class="secondary hidden" id="clearCancel" data-en="Cancel" data-vi="Huỷ">Cancel</button>
+  </div>
+</section>
+
+<footer data-en="This activity runs in your browser. It does not send your answers to the MOOC, GitHub, or an AI service." data-vi="Hoạt động chạy trong trình duyệt. Trang không gửi câu trả lời của bạn đến MOOC, GitHub hay dịch vụ AI.">This activity runs in your browser. It does not send your answers to the MOOC, GitHub, or an AI service.</footer>
+</main>
+
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const KEY='moet-self-study-plan-m7-v1';
+let lang='en';
+const t=(en,vi)=>lang==='en'?en:vi;
+const DAYS=[['','Choose','Chọn'],['Monday','Monday','Thứ Hai'],['Tuesday','Tuesday','Thứ Ba'],['Wednesday','Wednesday','Thứ Tư'],['Thursday','Thursday','Thứ Năm'],['Friday','Friday','Thứ Sáu'],['Saturday','Saturday','Thứ Bảy'],['Sunday','Sunday','Chủ Nhật'],['Any day','Any day','Ngày bất kỳ']];
+const newRow=()=>({day:'',what:'',mins:'',res:'',purpose:''});
+const blank=()=>({goal:'',skills:[],strategies:'',resources:'',tools:'',available:'',routine:[newRow(),newRow(),newRow()],rc:[],change:'',
+  aiUse:'',aiNot:'',prog1:'',prog2:'',prog3:'',checks:[],checkOther:'',review:'',reviewOther:'',reviewSetOn:'',keepIf:'',changeIf:'',stopIf:'',firstStep:''});
+let S=blank();
+
+/* storage */
+let saveTimer=null,storageOK=true;
+function load(){try{const r=localStorage.getItem(KEY);if(r){S=Object.assign(blank(),JSON.parse(r));
+  ['skills','rc','checks'].forEach(k=>{if(!Array.isArray(S[k]))S[k]=[]});
+  if(!Array.isArray(S.routine)||!S.routine.length)S.routine=blank().routine;}}catch(e){storageOK=false}}
+function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{
+  try{localStorage.setItem(KEY,JSON.stringify(S));$('savedStatus').textContent=t('Saved on this device at ','Đã lưu trên thiết bị lúc ')+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
+  catch(e){$('savedStatus').textContent=t('Your plan can’t be saved in this browser. Download it before you leave.','Không thể lưu kế hoạch trong trình duyệt này. Hãy tải về trước khi rời trang.')}},400)}
+
+/* routine */
+function renderRoutine(){
+  const body=$('routineBody');body.replaceChildren();
+  const heads=[t('Day','Ngày'),t('What I will practise','Tôi sẽ luyện gì'),t('Minutes','Số phút'),t('Resource or support','Tài liệu hoặc hỗ trợ'),t('Purpose','Mục đích')];
+  S.routine.forEach((r,i)=>{
+    const tr=document.createElement('tr');
+    const n=i+1;
+    const mk=(cls,th,el)=>{const td=document.createElement('td');if(cls)td.className=cls;td.dataset.th=th;td.append(el);tr.append(td)};
+    const sel=document.createElement('select');sel.setAttribute('aria-label',t(`Session ${n}: day`,`Buổi ${n}: ngày`));
+    DAYS.forEach(([v,en,vi])=>{const o=document.createElement('option');o.value=v;o.textContent=lang==='en'?en:vi;sel.append(o)});sel.value=r.day;
+    sel.addEventListener('change',()=>{r.day=sel.value;update()});mk('day',heads[0],sel);
+    const field=(key,label,cls,type)=>{const inp=document.createElement('input');inp.type=type||'text';inp.value=r[key];inp.setAttribute('aria-label',t(`Session ${n}: `,`Buổi ${n}: `)+label);
+      if(type==='number'){inp.min='0';inp.max='600';inp.step='5';inp.inputMode='numeric'}else inp.maxLength=150;
+      inp.addEventListener('input',()=>{r[key]=inp.value;update()});mk(cls,label,inp)};
+    field('what',heads[1]);field('mins',heads[2],'num','number');field('res',heads[3]);field('purpose',heads[4]);
+    const td=document.createElement('td');td.className='rm';
+    if(S.routine.length>1){const b=document.createElement('button');b.type='button';b.className='secondary small';b.textContent='✕';
+      b.setAttribute('aria-label',t(`Remove session ${n}`,`Xoá buổi ${n}`));b.addEventListener('click',()=>{S.routine.splice(i,1);renderRoutine();update()});td.append(b)}
+    tr.append(td);body.append(tr);
+  });
+  $('addRow').disabled=S.routine.length>=10;
+}
+const totalMins=()=>S.routine.reduce((s,r)=>s+(parseInt(r.mins,10)||0),0);
+function routineMsgs(){
+  const tot=totalMins(),av=parseInt(S.available,10)||0,sessions=S.routine.filter(r=>r.what.trim()).length;
+  $('totalLine').textContent=t(`Total: ${tot} minutes a week in ${sessions} session${sessions===1?'':'s'}`,`Tổng: ${tot} phút mỗi tuần, ${sessions} buổi`);
+  const box=$('timeMsg');box.replaceChildren();
+  const add=(cls,msg)=>{const d=document.createElement('div');d.className=cls;d.textContent=msg;box.append(d)};
+  if(av&&tot>av)add('warn',t(`Your routine is ${tot-av} minutes longer than the time you have. Make a session shorter, or remove one.`,`Lịch học dài hơn thời gian bạn có ${tot-av} phút. Hãy rút ngắn hoặc bỏ bớt một buổi.`));
+  else if(av&&tot>0)add('okmsg',t('Your routine fits the time you have.','Lịch học phù hợp với thời gian bạn có.'));
+  const missing=S.routine.filter(r=>r.what.trim()&&!r.purpose.trim()).length;
+  if(missing)add('warn',t('Add a purpose to each session. Why are you doing it?','Thêm mục đích cho mỗi buổi. Bạn học để làm gì?'));
+}
+function rcMsg(){
+  const box=$('rcMsg');box.replaceChildren();const n=S.rc.length;if(!n)return;
+  const d=document.createElement('div');
+  if(n===4){d.className='okmsg';d.textContent=t('Your routine looks realistic.','Lịch học có vẻ thực tế.')}
+  else{d.className='warn';d.textContent=t('What can you change so all four are true? Write it below.','Bạn có thể thay đổi gì để cả bốn điều đều đúng? Viết ở bên dưới.')}
+  box.append(d);
+}
+
+/* chips */
+function addTo(key,val){
+  if(key==='prog'){const k=['prog1','prog2','prog3'].find(x=>!S[x].trim());if(!k)return null;S[k]=val;$(k).value=val;return $(k)}
+  const el=$(key);
+  if(el.tagName==='TEXTAREA'){const cur=S[key].trim();if(cur.split('\n').map(s=>s.trim()).includes(val))return el;S[key]=cur?cur+'\n'+val:val}
+  else S[key]=val;
+  el.value=S[key];return el;
+}
+document.querySelectorAll('.chips').forEach(c=>{
+  c.dataset.items.split('|').forEach(item=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=item;
+    b.setAttribute('aria-label',t('Add: ','Thêm: ')+item);
+    b.addEventListener('click',()=>{const el=addTo(c.dataset.target,item);if(el){update();el.focus()}});c.append(b)});
+});
+
+/* review date */
+function reviewInfo(){
+  const box=$('reviewDate');$('reviewOtherWrap').classList.toggle('hidden',S.review!=='other');
+  if(S.review==='2w'||S.review==='1m'){
+    const base=S.reviewSetOn?new Date(S.reviewSetOn):new Date();const d=new Date(base);
+    if(S.review==='2w')d.setDate(d.getDate()+14);else d.setMonth(d.getMonth()+1);
+    const ds=d.toLocaleDateString(lang==='en'?'en-GB':'vi-VN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    box.textContent=t('Your review date: ','Ngày xem lại: ')+ds+t('. Put it in your calendar.','. Hãy ghi vào lịch.');box.classList.remove('hidden');return ds;
+  }
+  box.classList.add('hidden');return S.review==='other'?S.reviewOther:'';
+}
+
+/* summary */
+function planData(){
+  const routine=S.routine.filter(r=>r.what.trim()||r.mins||r.res.trim()||r.purpose.trim());
+  const checks=[...S.checks,S.checkOther.trim()].filter(Boolean);
+  const progs=[S.prog1,S.prog2,S.prog3].map(s=>s.trim()).filter(Boolean);
+  return {routine,checks,progs,review:reviewInfo()};
+}
+function renderPlan(){
+  const {routine,checks,progs,review}=planData();
+  const v=$('planView');v.replaceChildren();
+  const h=document.createElement('h3');h.textContent=t('My self-study plan','Kế hoạch tự học của tôi');v.append(h);
+  const dl=document.createElement('dl');
+  const row=(label,content)=>{const dt=document.createElement('dt');dt.textContent=label;const dd=document.createElement('dd');
+    if(content instanceof Node)dd.append(content);else if(content&&String(content).trim())dd.textContent=content;else{dd.textContent=t('Not filled in yet','Chưa điền');dd.className='empty'}
+    dl.append(dt,dd)};
+  row(t('My main goal','Mục tiêu chính'),S.goal);
+  row(t('My priority skills','Kỹ năng ưu tiên'),S.skills.join(', '));
+  row(t('My useful strategies','Chiến lược hữu ích'),S.strategies);
+  if(routine.length){
+    const tb=document.createElement('table');const hr=document.createElement('tr');
+    [t('Day','Ngày'),t('Practise','Luyện'),t('Mins','Phút'),t('Resource','Tài liệu'),t('Purpose','Mục đích')].forEach(x=>{const th=document.createElement('th');th.textContent=x;hr.append(th)});tb.append(hr);
+    routine.forEach(r=>{const tr=document.createElement('tr');[r.day,r.what,r.mins,r.res,r.purpose].forEach(x=>{const td=document.createElement('td');td.textContent=x||'';tr.append(td)});tb.append(tr)});
+    const wrap=document.createElement('div');wrap.append(tb);const p=document.createElement('p');p.style.margin='4px 0 0';p.textContent=t(`Total: ${totalMins()} minutes a week`,`Tổng: ${totalMins()} phút mỗi tuần`);wrap.append(p);
+    row(t('My weekly routine','Lịch học hằng tuần'),wrap);
+  } else row(t('My weekly routine','Lịch học hằng tuần'),'');
+  row(t('Resources and support','Tài liệu và hỗ trợ'),[S.resources.trim(),S.tools.trim()?t('Tools: ','Công cụ: ')+S.tools.trim():''].filter(Boolean).join('\n'));
+  row(t('How I will use AI and digital tools','Cách tôi dùng AI và công cụ số'),[S.aiUse.trim()?t('I will use them to:\n','Tôi sẽ dùng để:\n')+S.aiUse.trim():'',S.aiNot.trim()?t('I will not use them to:\n','Tôi sẽ không dùng để:\n')+S.aiNot.trim():''].filter(Boolean).join('\n\n'));
+  row(t('My signs of progress','Dấu hiệu tiến bộ'),progs.map((p,i)=>`${i+1}. ${p}`).join('\n'));
+  row(t('How I will check progress','Cách kiểm tra tiến bộ'),checks.join(', '));
+  row(t('When I will review my plan','Khi nào xem lại kế hoạch'),review);
+  row(t('Keep, change or stop','Giữ, thay đổi hoặc dừng'),[S.keepIf.trim()?t('Keep it if ','Giữ nếu ')+S.keepIf.trim():'',S.changeIf.trim()?t('Change it if ','Thay đổi nếu ')+S.changeIf.trim():'',S.stopIf.trim()?t('Stop it if ','Dừng nếu ')+S.stopIf.trim():''].filter(Boolean).join('\n'));
+  row(t('My first step','Bước đầu tiên'),S.firstStep);
+  v.append(dl);
+}
+function planText(){
+  const {routine,checks,progs,review}=planData();
+  const v=s=>(s&&String(s).trim())||'(not filled in)';
+  const r=routine.length?routine.map((x,i)=>`${i+1}. ${x.day||'Any day'} | ${x.what||'-'} | ${x.mins||'?'} min | ${x.res||'-'} | Purpose: ${x.purpose||'-'}`).join('\n')+`\nTotal: ${totalMins()} minutes a week`:'(not filled in)';
+  return ['MY SELF-STUDY PLAN','Independent English Learning in the Digital Age','Made on: '+new Date().toLocaleDateString('en-GB'),'',
+    'MY MAIN GOAL',v(S.goal),'','MY PRIORITY SKILLS',v(S.skills.join(', ')),'','MY USEFUL STRATEGIES',v(S.strategies),'',
+    'MY WEEKLY ROUTINE',r,'','RESOURCES AND SUPPORT',v(S.resources),'Tools: '+v(S.tools),'',
+    'HOW I WILL USE AI AND DIGITAL TOOLS','I will use them to:\n'+v(S.aiUse),'I will not use them to:\n'+v(S.aiNot),'',
+    'MY SIGNS OF PROGRESS',progs.length?progs.map((p,i)=>`${i+1}. ${p}`).join('\n'):'(not filled in)','',
+    'HOW I WILL CHECK PROGRESS',v(checks.join(', ')),'','WHEN I WILL REVIEW MY PLAN',v(lang==='en'?review:(S.review==='2w'?'After 2 weeks':S.review==='1m'?'After 1 month':review)),'',
+    'KEEP, CHANGE OR STOP','Keep it if '+v(S.keepIf),'Change it if '+v(S.changeIf),'Stop it if '+v(S.stopIf),'',
+    'MY FIRST STEP',v(S.firstStep),'','A useful plan is not the biggest plan. It is a plan you can follow, check and change.',''].join('\n');
+}
+
+/* nav */
+function updateNav(){
+  $('nav1').classList.toggle('done',!!S.goal.trim()&&S.routine.some(r=>r.what.trim()));
+  $('nav2').classList.toggle('done',!!S.prog1.trim()&&(S.checks.length>0||!!S.checkOther.trim()));
+  $('nav3').classList.toggle('done',!!S.review&&!!S.firstStep.trim());
+}
+function update(){
+  $('skillWarn').classList.toggle('hidden',S.skills.length<=3);
+  routineMsgs();rcMsg();renderPlan();updateNav();save();
+}
+
+/* binding */
+document.querySelectorAll('[data-key]').forEach(el=>{
+  el.addEventListener('input',()=>{S[el.dataset.key]=el.value;update()});
+});
+const bindChecks=(sel,key)=>document.querySelectorAll(sel).forEach(c=>c.addEventListener('change',()=>{S[key]=[...document.querySelectorAll(sel+':checked')].map(x=>x.value);update()}));
+bindChecks('input[name="skill"]','skills');bindChecks('input.rc','rc');bindChecks('input[name="check"]','checks');
+document.querySelectorAll('input[name="review"]').forEach(r=>r.addEventListener('change',()=>{S.review=r.value;S.reviewSetOn=new Date().toISOString();update()}));
+
+function fill(){
+  document.querySelectorAll('[data-key]').forEach(el=>{el.value=S[el.dataset.key]||''});
+  document.querySelectorAll('input[name="skill"]').forEach(c=>c.checked=S.skills.includes(c.value));
+  document.querySelectorAll('input.rc').forEach(c=>c.checked=S.rc.includes(c.value));
+  document.querySelectorAll('input[name="check"]').forEach(c=>c.checked=S.checks.includes(c.value));
+  document.querySelectorAll('input[name="review"]').forEach(r=>r.checked=r.value===S.review);
+  renderRoutine();update();
+}
+
+$('addRow').addEventListener('click',()=>{S.routine.push(newRow());renderRoutine();update();const sels=$('routineBody').querySelectorAll('select');sels[sels.length-1].focus()});
+$('dlBtn').addEventListener('click',()=>{
+  const url=URL.createObjectURL(new Blob([planText()],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');
+  a.href=url;a.download='my-self-study-plan.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  $('dlStatus').textContent=t('Downloaded. Keep the file.','Đã tải về. Hãy giữ tệp này.');setTimeout(()=>{$('dlStatus').textContent=''},6000);
+});
+$('printBtn').addEventListener('click',()=>{document.body.classList.add('printPlan');window.print();setTimeout(()=>document.body.classList.remove('printPlan'),500)});
+window.addEventListener('afterprint',()=>document.body.classList.remove('printPlan'));
+$('clearBtn').addEventListener('click',()=>{$('clearConfirm').classList.remove('hidden');$('clearCancel').classList.remove('hidden');$('clearConfirm').focus()});
+$('clearCancel').addEventListener('click',()=>{$('clearConfirm').classList.add('hidden');$('clearCancel').classList.add('hidden')});
+$('clearConfirm').addEventListener('click',()=>{S=blank();try{localStorage.removeItem(KEY)}catch(e){}fill();$('clearConfirm').classList.add('hidden');$('clearCancel').classList.add('hidden');
+  $('savedStatus').textContent=t('Your plan was deleted.','Kế hoạch đã được xoá.');window.scrollTo(0,0)});
+
+/* language */
+$('langBtn').addEventListener('click',()=>{
+  lang=lang==='en'?'vi':'en';document.documentElement.lang=lang;
+  document.querySelectorAll('[data-en]').forEach(e=>e.textContent=e.dataset[lang]);
+  $('langBtn').textContent=lang==='en'?'Tiếng Việt':'English';
+  renderRoutine();update();
+});
+
+load();fill();
+if(!storageOK)$('savedStatus').textContent=t('Your plan can’t be saved in this browser. Download it before you leave.','Không thể lưu kế hoạch trong trình duyệt này. Hãy tải về trước khi rời trang.');
+else if(S.goal||S.strategies)$('savedStatus').textContent=t('Welcome back. Your plan is still here.','Chào mừng bạn quay lại. Kế hoạch vẫn còn đây.');
+})();
+</script>
+</body>
+</html>
